@@ -1,5 +1,5 @@
-import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
+import React from 'react';
 import Table from '../Table';
 import { TableProps } from '../type';
 import { pokemonDataMock, pokemonTableHeader } from './TableStoriesMock';
@@ -7,6 +7,7 @@ import TableWithBorderHeader from './Components/TableWithBorder/TableWithBorderH
 import TableWithBorderCell from './Components/TableWithBorder/TableWithBorderCell';
 import TableWithFullBorderCell from './Components/TableWithFullBorder/TableWithFullBorderCell';
 import TableWithFullBorderHeader from './Components/TableWithFullBorder/TableWithFullBorderHeader';
+
 export default {
   title: 'ReactLightTable/Table',
   component: Table,
