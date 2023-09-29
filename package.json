@@ -1,5 +1,5 @@
 {
-  "name": "@s-roueche/react-light-table",
+  "name": "@s-roueche/bespoketable",
   "version": "0.0.1",
   "description": "A lightweight and highly customizable table component for React. Designed with flexibility in mind, this component is perfect for developers who want full control over their table's appearance and behavior without the bloat of heavier solutions.",
   "main": "dist/cjs/bundle.js",
@@ -73,6 +73,7 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.11",
     "rimraf": "^4.4.1",
     "rollup": "^3.20.2",
     "rollup-plugin-dts": "^5.3.0",

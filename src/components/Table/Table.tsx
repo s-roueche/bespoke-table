@@ -1,0 +1,61 @@
+import React from 'react';
+import HeaderRow from './Header/HeaderRow';
+import Row from './Row/Row';
+import { useTableSort } from './hook/useOrderTable';
+import { usePaginationTable } from './hook/usePaginationTable';
+import { TableProps } from './type';
+import { getDataPaginated } from './utils/tablePaginationUtils';
+import { getDataSorted } from './utils/tableSortUtils';
+import { generateGridTemplateColumns, generateGridTemplateRows } from './utils/tableUtils';
+
+export default function Table<C>({
+  data,
+  headers,
+  cellRender,
+  headerCellRender,
+  isLoading = false,
+  pagination,
+  loadingComponent,
+  noDataComponent,
+  headerSortComponent,
+}: TableProps<C>) {
+  const { order, orderByColumnId, propertyKeyToOrder, handleSort } = useTableSort<C>(headers);
+  const { page, rowsPerPage, ...paginationConfig } = usePaginationTable(pagination);
+  const isDataAvailable = isLoading === false && data.length !== 0;
+  const dataSorted = getDataSorted(orderByColumnId, propertyKeyToOrder, data, order);
+  const dataTable = getDataPaginated(dataSorted, page, rowsPerPage, pagination);
+
+  return (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: generateGridTemplateColumns(headers),
+        gridTemplateRows: isDataAvailable ? generateGridTemplateRows(dataTable) : 'none',
+      }}
+    >
+      <HeaderRow
+        headers={headers}
+        headerCellRender={headerCellRender}
+        handleSort={handleSort}
+        activeColumnIdSorted={orderByColumnId}
+        orderDirection={order}
+        headerSortComponent={headerSortComponent}
+      />
+      {isLoading === false && data.length === 0 && (
+        <div style={{ gridColumn: '1/end' }}>{noDataComponent}</div>
+      )}
+      {isDataAvailable &&
+        dataTable.map((row, index) => (
+          <Row
+            key={`row-${row.rowId}`}
+            rowId={row.rowId}
+            headers={headers}
+            cells={row.cells}
+            cellRender={cellRender}
+            lastRow={index === dataTable.length - 1}
+          />
+        ))}
+      {isLoading && <div style={{ gridColumn: '1/end' }}>{loadingComponent}</div>}
+    </div>
+  );
+}

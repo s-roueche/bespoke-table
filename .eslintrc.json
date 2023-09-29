@@ -12,9 +12,9 @@
     "plugin:prettier/recommended"
   ],
   "plugins": [
+    "prettier",
     "react",
-    "@typescript-eslint",
-    "prettier"
+    "@typescript-eslint"
   ],
   "overrides": [
   ],
