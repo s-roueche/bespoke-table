@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableHeaderProps } from '../../../type';
+import { TableHeaderProps } from '../../../src/type';
 
 export type TableWithBorderHeaderProps = {
   header: TableHeaderProps<string>;

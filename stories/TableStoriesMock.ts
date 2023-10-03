@@ -1,4 +1,4 @@
-import { TableHeaderProps, TableDataProps } from '../type';
+import { TableHeaderProps, TableDataProps } from '../src/type';
 export const pokemonTableHeader: TableHeaderProps<string>[] = [
   {
     id: 'col-name',

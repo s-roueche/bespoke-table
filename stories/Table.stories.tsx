@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import Table from '../Table';
-import { TableProps } from '../type';
+import Table from '../src/Table';
+import { TableProps } from '../src/type';
 import { pokemonDataMock, pokemonTableHeader } from './TableStoriesMock';
 import TableWithBorderHeader from './Components/TableWithBorder/TableWithBorderHeader';
 import TableWithBorderCell from './Components/TableWithBorder/TableWithBorderCell';

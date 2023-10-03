@@ -8,7 +8,7 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://s-roueche.github.io/react-light-table",
+  "homepage": "https://s-roueche.github.io/bespoke-table",
   "scripts": {
     "build": "rimraf dist && rollup -c",
     "dev": "rollup -c -w",
@@ -21,19 +21,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/s-roueche/react-light-table.git"
+    "url": "git+https://github.com/s-roueche/bespoke-table.git"
   },
   "author": "Sébastien ROUECHE",
   "license": "MIT",
   "keywords": [
-    "react-library",
     "react",
     "table",
+    "react-library",
+    "bespoke",
     "lightweight",
     "customizable"
   ],
   "bugs": {
-    "url": "https://github.com/s-roueche/react-light-table/issues"
+    "url": "https://github.com/s-roueche/bespoke-table/issues"
   },
   "peerDependencies": {
     "react": ">=16.8.0",

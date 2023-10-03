@@ -23,18 +23,12 @@ export default [
 				format: "esm",
 				sourcemap: true,
 			},
-			/* {
-				file: 'dist/bundle.min.js',
-				format: 'iife',
-				name: 'version',
-				plugins: [terser()]
-			} */
 		],
 		plugins: [
 			peerDepsExternal(),
 			resolve(),
 			commonjs(),
-			typescript({ tsconfig: "./tsconfig.json" }),
+			typescript({ tsconfig: "./tsconfig.json", include: [ 'src/**/*.tsx', 'src/**/*.ts'] }),
 			terser()
 		]
 	},
