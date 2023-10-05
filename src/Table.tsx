@@ -18,6 +18,7 @@ export default function Table<C>({
   loadingComponent,
   noDataComponent,
   headerSortComponent,
+  fallbackRender,
 }: TableProps<C>) {
   const { order, orderByColumnId, propertyKeyToOrder, handleSort } = useTableSort<C>(headers);
   const { page, rowsPerPage, ...paginationConfig } = usePaginationTable(pagination);
@@ -53,6 +54,7 @@ export default function Table<C>({
             cells={row.cells}
             cellRender={cellRender}
             lastRow={index === dataTable.length - 1}
+            fallbackRender={fallbackRender}
           />
         ))}
       {isLoading && <div style={{ gridColumn: '1/end' }}>{loadingComponent}</div>}

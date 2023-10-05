@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { Component, FunctionComponent, ReactElement, ReactNode } from 'react';
 
 export type Order = 'asc' | 'desc';
 
@@ -12,6 +12,7 @@ export type TableProps<C> = {
   noDataComponent?: ReactNode;
   isLoading?: boolean;
   pagination?: PaginationTableConfigProps;
+  fallbackRender?: FallbackRender<C>;
 };
 
 export type TableHeaderProps<C> = {
@@ -64,3 +65,10 @@ export type PaginationTableConfigProps = {
   rowsPerPage?: number;
   itemsPerPage?: number[];
 };
+
+export type FallbackRender<C> = (
+  rowId: string,
+  header: TableHeaderProps<C>,
+  lastRow: boolean,
+  cell?: TableCellProps<C>,
+) => ReactElement<unknown, string | FunctionComponent | typeof Component> | null;
