@@ -1,12 +1,14 @@
 import { Component, FunctionComponent, ReactElement, ReactNode } from 'react';
 
 export type Order = 'asc' | 'desc';
+export type Size = `${string}${'px' | 'fr'}`;
 
 export type TableProps<C> = {
-  data: TableDataProps<C>[];
   headers: TableHeaderProps<C>[];
+  headerHeight?: Size;
   headerCellRender: HeaderCellRender<C>;
   headerSortComponent?: HeaderSortComponent;
+  data: TableDataProps<C>[];
   cellRender: CellRender<C>;
   loadingComponent?: ReactNode;
   noDataComponent?: ReactNode;
@@ -20,14 +22,16 @@ export type TableHeaderProps<C> = {
   title?: string;
   propertyKeyToOrder?: keyof C;
   defaultSortDirection?: Order;
-  width?: `${string}${'px' | 'fr'}`;
+  width?: Size;
   isLastColumn?: boolean;
   isFirstColumn?: boolean;
 };
 
 export type TableDataProps<C> = {
   rowId: string;
-  rowHeight?: `${string}${'px' | 'fr'}`;
+  rowHeight?: Size;
+  className?: string;
+  meta?: Record<string, unknown>;
   cells: TableCellProps<C>[];
 };
 
@@ -47,10 +51,16 @@ export type HeaderSortComponent = (
   orderDirection: Order,
 ) => ReactNode;
 
+export type RowProps = {
+  rowId: string;
+  lastRow: boolean;
+  className?: string;
+  meta?: Record<string, unknown>;
+};
+
 export type CellRender<C> = (
   header: TableHeaderProps<C>,
-  rowId: string,
-  lastRow: boolean,
+  rowProps: RowProps,
   value?: C,
 ) => ReactNode;
 

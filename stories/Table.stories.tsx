@@ -8,10 +8,10 @@ import {
   ffVIITableHeader,
   ffVIITableHeaderCustomWidth,
 } from './TableStoriesMock';
-import TableWithBorderHeader from './Components/TableWithBorder/TableWithBorderHeader';
-import TableWithBorderCell from './Components/TableWithBorder/TableWithBorderCell';
-import TableWithFullBorderCell from './Components/TableWithFullBorder/TableWithFullBorderCell';
-import TableWithFullBorderHeader from './Components/TableWithFullBorder/TableWithFullBorderHeader';
+import TableWithBorderHeader from './Components/Header/TableWithBorderHeader';
+import TableWithBorderCell from './Components/Cell/TableWithBorderCell';
+import TableWithFullBorderCell from './Components/Cell/TableWithFullBorderCell';
+import TableWithFullBorderHeader from './Components/Header/TableWithFullBorderHeader';
 import Container from './Components/Container';
 import ThrowError from './Components/ThrowError';
 import CellErrorLayout from './Components/Cell/CellErrorLayout';
@@ -28,7 +28,7 @@ export default {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '700px' }}>
+      <div style={{ width: '900px' }}>
         <Story />
       </div>
     ),
@@ -40,7 +40,7 @@ export const Default: StoryFn<Omit<TableProps<string>, 'cellRender' | 'headerCel
 ) => (
   <Table<string>
     headerCellRender={(header) => <span>{header.title}</span>}
-    cellRender={(header, rowId, lastRow, value) => <span>{value}</span>}
+    cellRender={(header, rowProps, value) => <span>{value}</span>}
     {...props}
   />
 );
@@ -50,8 +50,8 @@ export const TableWithBorder: StoryFn<
 > = (props) => (
   <Table<string>
     headerCellRender={(header) => <TableWithBorderHeader header={header} />}
-    cellRender={(header, rowId, lastRow, value) => (
-      <TableWithBorderCell header={header} lastRow={lastRow} cellValue={value} />
+    cellRender={(header, rowProps, value) => (
+      <TableWithBorderCell header={header} lastRow={rowProps.lastRow} cellValue={value} />
     )}
     {...props}
   />
@@ -62,7 +62,7 @@ export const TableWithFullBorder: StoryFn<
 > = (props) => (
   <Table<string>
     headerCellRender={(header) => <TableWithFullBorderHeader header={header} />}
-    cellRender={(header, rowId, lastRow, value) => (
+    cellRender={(header, rowProps, value) => (
       <TableWithFullBorderCell header={header} cellValue={value} />
     )}
     {...props}
@@ -74,7 +74,7 @@ export const LoadingData: StoryFn<Omit<TableProps<string>, 'cellRender' | 'heade
 ) => (
   <Table<string>
     headerCellRender={(header) => <TableWithFullBorderHeader header={header} />}
-    cellRender={(header, rowId, lastRow, value) => <span>{value}</span>}
+    cellRender={(header, rowProps, value) => <span>{value}</span>}
     isLoading={true}
     loadingComponent={
       <Container>
@@ -96,7 +96,7 @@ export const NoDataAvailable: StoryFn<
   <Table<string>
     {...props}
     headerCellRender={(header) => <TableWithFullBorderHeader header={header} />}
-    cellRender={(header, rowId, lastRow, value) => <span>{value}</span>}
+    cellRender={(header, rowProps, value) => <span>{value}</span>}
     noDataComponent={<Container>No data available</Container>}
     data={[]}
   />
@@ -109,7 +109,7 @@ export const ColumnCustomWidth: StoryFn<
     {...props}
     headers={ffVIITableHeaderCustomWidth}
     headerCellRender={(header) => <TableWithFullBorderHeader header={header} />}
-    cellRender={(header, rowId, lastRow, value) => (
+    cellRender={(header, rowProps, value) => (
       <TableWithFullBorderCell header={header} cellValue={value} />
     )}
   />
@@ -122,7 +122,7 @@ export const ColumnCustomHeight: StoryFn<
     {...props}
     data={ffVIIDataCustomHeightMock}
     headerCellRender={(header) => <TableWithFullBorderHeader header={header} />}
-    cellRender={(header, rowId, lastRow, value) => (
+    cellRender={(header, rowProps, value) => (
       <TableWithFullBorderCell header={header} cellValue={value} />
     )}
   />
@@ -135,7 +135,7 @@ export const ErrorBoundaryDefaultRendering: StoryFn<
     {...props}
     data={ffVIIDataCustomHeightMock}
     headerCellRender={(header) => <TableWithFullBorderHeader header={header} />}
-    cellRender={(header, rowId, lastRow, value) =>
+    cellRender={(header, rowProps, value) =>
       header.id === 'col-role' ? (
         <ThrowError />
       ) : (
@@ -151,14 +151,14 @@ export const ErrorBoundaryCustomRendering: StoryFn<
   <Table<string>
     {...props}
     headerCellRender={(header) => <TableWithFullBorderHeader header={header} />}
-    cellRender={(header, rowId, lastRow, value) =>
+    cellRender={(header, rowProps, value) =>
       header.id === 'col-role' ? (
         <ThrowError />
       ) : (
         <TableWithFullBorderCell header={header} cellValue={value} />
       )
     }
-    fallbackRender={(rowId, header, lastRow, cell) => (
+    fallbackRender={(rowId, header, lastRow) => (
       <CellErrorLayout header={header} lastRow={lastRow} cellValue={'My custom error rendering'} />
     )}
   />

@@ -1,27 +1,32 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import { CellRender, FallbackRender, TableCellProps, TableHeaderProps } from '../type';
-import React, { ReactNode } from 'react';
+import { CellRender, FallbackRender, RowProps, TableDataProps, TableHeaderProps } from '../type';
+import React from 'react';
 
 export default function Row<C>({
-  rowId,
-  cells,
+  row,
   headers,
   cellRender,
   lastRow,
   fallbackRender,
 }: {
-  rowId: string;
-  cells: TableCellProps<C>[];
+  row: TableDataProps<C>;
   headers: TableHeaderProps<C>[];
   cellRender: CellRender<C>;
   lastRow: boolean;
   fallbackRender?: FallbackRender<C>;
 }) {
+  const { rowId, cells, className, meta } = row;
   return (
     <>
       {headers.map((header) => {
         const key = `cell-${rowId}-${header.id}`;
         const cell = cells.find((cell) => cell.headerId === header.id);
+        const rowProps: RowProps = {
+          rowId,
+          lastRow,
+          className,
+          meta,
+        };
         return (
           <ErrorBoundary
             key={key}
@@ -33,7 +38,7 @@ export default function Row<C>({
               )
             }
           >
-            {cellRender(header, rowId, lastRow, cell?.cellData)}
+            {cellRender(header, rowProps, cell?.cellData)}
           </ErrorBoundary>
         );
       })}

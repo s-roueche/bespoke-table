@@ -19,6 +19,7 @@ export default function Table<C>({
   noDataComponent,
   headerSortComponent,
   fallbackRender,
+  headerHeight,
 }: TableProps<C>) {
   const { order, orderByColumnId, propertyKeyToOrder, handleSort } = useTableSort<C>(headers);
   const { page, rowsPerPage, ...paginationConfig } = usePaginationTable(pagination);
@@ -31,7 +32,9 @@ export default function Table<C>({
       style={{
         display: 'grid',
         gridTemplateColumns: generateGridTemplateColumns(headers),
-        gridTemplateRows: isDataAvailable ? generateGridTemplateRows(dataTable) : 'none',
+        gridTemplateRows: isDataAvailable
+          ? generateGridTemplateRows(dataTable, headerHeight)
+          : 'none',
       }}
     >
       <HeaderRow
@@ -49,9 +52,8 @@ export default function Table<C>({
         dataTable.map((row, index) => (
           <Row
             key={`row-${row.rowId}`}
-            rowId={row.rowId}
+            row={row}
             headers={headers}
-            cells={row.cells}
             cellRender={cellRender}
             lastRow={index === dataTable.length - 1}
             fallbackRender={fallbackRender}
