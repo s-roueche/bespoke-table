@@ -43,5 +43,13 @@ Now, anytime you make a change to your library or the stories, the storybook wil
 - `npm run build-storybook` : builds a static HTML/JS bundle that can easily be hosted on a remote server, so all members of your team can try your components.
 - `npm run deploy-storybook` : build & deploy the storybook to GitHub Pages
 
+### Deploy Storybook to GitHub Pages:
+ 
+```bash
+yarn build-storybook 
+yarn deploy-storybook
+```
+
+
 ## License
 [MIT](LICENSE).

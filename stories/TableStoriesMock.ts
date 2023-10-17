@@ -331,3 +331,28 @@ export const ffVIIDataWihDesignMock: TableDataProps<string>[] = [
     ],
   },
 ];
+
+export const ffVIITableHeaderWithSorting: TableHeaderProps<string>[] = [
+  {
+    id: 'col-name',
+    title: 'Name',
+    isFirstColumn: true,
+    propertyKeyToOrder: 'toString',
+    defaultSortDirection: 'asc',
+  },
+  {
+    id: 'col-role',
+    title: 'Role',
+  },
+  {
+    id: 'col-weapon',
+    title: 'Weapon',
+    propertyKeyToOrder: 'toString',
+  },
+  {
+    id: 'col-class',
+    title: 'Class',
+    isLastColumn: true,
+    propertyKeyToOrder: 'toString',
+  },
+];
