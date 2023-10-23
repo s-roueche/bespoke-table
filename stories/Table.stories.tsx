@@ -8,6 +8,7 @@ import {
   ffVIITableHeader,
   ffVIITableHeaderCustomWidth,
   ffVIITableHeaderWithSorting,
+  ffVIIWithMergedRowsDataMock,
 } from './TableStoriesMock';
 import TableWithBorderHeader from './Components/Header/TableWithBorderHeader';
 import TableWithBorderCell from './Components/Cell/TableWithBorderCell';
@@ -20,6 +21,8 @@ import TableHeaderWithSorting from './Components/Header/TableHeaderWithSorting/T
 import { SortSwitch } from './Components/Header/TableHeaderWithSorting/SortSwitch';
 import Pagination from './Components/Pagination/Pagination';
 import { generateData } from './Utils/generateData';
+import TableWithColumnsMergedHeader from './Components/Header/TableWithColumnsMergedHeader';
+import TableWithCellsMerged from './Components/Cell/TableWithCellsMerged';
 
 export default {
   title: 'BespokeTable/Examples',
@@ -130,6 +133,31 @@ export const ColumnCustomHeight: StoryFn<
     cellRender={(header, rowProps, value) => (
       <TableWithFullBorderCell header={header} cellValue={value} />
     )}
+  />
+);
+
+export const TableWithColumnsMerged: StoryFn<
+  Omit<TableProps<string>, 'cellRender' | 'headerCellRender'>
+> = (props) => (
+  <Table<string>
+    headerCellRender={(header) => <TableWithColumnsMergedHeader header={header} />}
+    cellRender={(header, rowProps, value) => (
+      <TableWithFullBorderCell header={header} cellValue={value} />
+    )}
+    {...props}
+  />
+);
+
+export const TableWithRowsMerged: StoryFn<
+  Omit<TableProps<string>, 'cellRender' | 'headerCellRender'>
+> = (props) => (
+  <Table<string>
+    headerCellRender={(header) => <TableWithFullBorderHeader header={header} />}
+    cellRender={(header, rowProps, value) => (
+      <TableWithCellsMerged header={header} cellValue={value} rowProps={rowProps} />
+    )}
+    {...props}
+    data={ffVIIWithMergedRowsDataMock}
   />
 );
 
