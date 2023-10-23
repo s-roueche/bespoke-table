@@ -1,4 +1,4 @@
-import { PaginationRenderProps } from '../../../src/type';
+import { PaginationRenderProps } from '../../../../src/type';
 import React from 'react';
 
 const Pagination = ({

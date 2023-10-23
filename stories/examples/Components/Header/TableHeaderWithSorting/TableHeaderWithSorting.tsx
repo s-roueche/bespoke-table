@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableHeaderProps } from '../../../../src/type';
+import { TableHeaderProps } from '../../../../../src/type';
 
 export type TableHeaderWithSortingProps = {
   header: TableHeaderProps<string>;

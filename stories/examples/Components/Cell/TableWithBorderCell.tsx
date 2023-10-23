@@ -1,4 +1,4 @@
-import { TableHeaderProps } from '../../../src/type';
+import { TableHeaderProps } from '../../../../src/type';
 import React from 'react';
 
 type TableWithBorderCellProps = {
