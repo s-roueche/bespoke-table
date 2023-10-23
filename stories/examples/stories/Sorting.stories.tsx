@@ -1,6 +1,6 @@
 import Table from '../../../src/Table';
 import { ffVIIDataMock } from '../Utils/tableStoriesMock';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { TableHeaderProps, TableProps } from '../../../src/type';
 import TableHeaderWithSorting from '../Components/Header/TableHeaderWithSorting/TableHeaderWithSorting';
@@ -32,42 +32,29 @@ const ffVIITableHeaderWithSorting: TableHeaderProps<string>[] = [
   },
 ];
 
-export default {
+const meta: Meta<TableProps<string>> = {
   title: 'BespokeTable',
   component: Table,
   args: {
     headers: ffVIITableHeaderWithSorting,
     data: ffVIIDataMock,
-  },
-  parameters: {
-    layout: 'centered',
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '900px' }}>
-        <Story />
-      </div>
-    ),
-  ],
-} as Meta;
-
-export const Sorting: StoryFn<Omit<TableProps<string>, 'cellRender' | 'headerCellRender'>> = (
-  props,
-) => (
-  <Table<string>
-    headerCellRender={(header, sortComponent) => (
+    headerCellRender: (header, sortComponent) => (
       <TableHeaderWithSorting header={header} sortComponent={sortComponent} />
-    )}
-    cellRender={(header, rowProps, value) => (
+    ),
+    cellRender: (header, rowProps, value) => (
       <TableWithFullBorderCell header={header} cellValue={value} />
-    )}
-    headerSortComponent={(handleSort, isSortActive, orderDirection) => (
+    ),
+    headerSortComponent: (handleSort, isSortActive, orderDirection) => (
       <SortSwitch
         onClick={handleSort}
         isColumnSortActive={isSortActive}
         orderDirection={orderDirection}
       />
-    )}
-    {...props}
-  />
-);
+    ),
+  },
+  render: (args) => <Table {...args} />,
+};
+
+export default meta;
+type Story = StoryObj<TableProps<string>>;
+export const Sorting: Story = {};

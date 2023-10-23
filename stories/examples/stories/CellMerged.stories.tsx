@@ -1,6 +1,6 @@
 import Table from '../../../src/Table';
 import { ffVIIDataMock, ffVIITableHeader } from '../Utils/tableStoriesMock';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { TableDataProps, TableProps } from '../../../src/type';
 import TableWithColumnsMergedHeader from '../Components/Header/TableWithColumnsMergedHeader';
@@ -107,46 +107,33 @@ const ffVIIWithMergedRowsDataMock: TableDataProps<string>[] = [
   },
 ];
 
-export default {
+const meta: Meta<TableProps<string>> = {
   title: 'BespokeTable/Cells Merged',
   component: Table,
   args: {
     headers: ffVIITableHeader,
     data: ffVIIDataMock,
   },
-  parameters: {
-    layout: 'centered',
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '900px' }}>
-        <Story />
-      </div>
-    ),
-  ],
-} as Meta;
+  render: (args) => <Table {...args} />,
+};
 
-export const TableWithColumnsMerged: StoryFn<
-  Omit<TableProps<string>, 'cellRender' | 'headerCellRender'>
-> = (props) => (
-  <Table<string>
-    headerCellRender={(header) => <TableWithColumnsMergedHeader header={header} />}
-    cellRender={(header, rowProps, value) => (
+export default meta;
+type Story = StoryObj<TableProps<string>>;
+export const TableWithColumnsMerged: Story = {
+  args: {
+    headerCellRender: (header) => <TableWithColumnsMergedHeader header={header} />,
+    cellRender: (header, rowProps, value) => (
       <TableWithFullBorderCell header={header} cellValue={value} />
-    )}
-    {...props}
-  />
-);
+    ),
+  },
+};
 
-export const TableWithRowsMerged: StoryFn<
-  Omit<TableProps<string>, 'cellRender' | 'headerCellRender'>
-> = (props) => (
-  <Table<string>
-    headerCellRender={(header) => <TableWithFullBorderHeader header={header} />}
-    cellRender={(header, rowProps, value) => (
+export const TableWithRowsMerged: Story = {
+  args: {
+    data: ffVIIWithMergedRowsDataMock,
+    headerCellRender: (header) => <TableWithFullBorderHeader header={header} />,
+    cellRender: (header, rowProps, value) => (
       <TableWithCellsMerged header={header} cellValue={value} rowProps={rowProps} />
-    )}
-    {...props}
-    data={ffVIIWithMergedRowsDataMock}
-  />
-);
+    ),
+  },
+};

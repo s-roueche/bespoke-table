@@ -1,6 +1,6 @@
 import Table from '../../../src/Table';
 import { ffVIIDataMock, ffVIITableHeader } from '../Utils/tableStoriesMock';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { TableDataProps, TableHeaderProps, TableProps } from '../../../src/type';
 import TableWithFullBorderHeader from '../Components/Header/TableWithFullBorderHeader';
 import TableWithFullBorderCell from '../Components/Cell/TableWithFullBorderCell';
@@ -115,48 +115,21 @@ const ffVIITableHeaderCustomWidth: TableHeaderProps<string>[] = [
     isLastColumn: true,
   },
 ];
-
-export default {
+const meta: Meta<TableProps<string>> = {
   title: 'BespokeTable/Cell size',
   component: Table,
   args: {
     headers: ffVIITableHeader,
     data: ffVIIDataMock,
-  },
-  parameters: {
-    layout: 'centered',
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '900px' }}>
-        <Story />
-      </div>
+    headerCellRender: (header) => <TableWithFullBorderHeader header={header} />,
+    cellRender: (header, rowProps, value) => (
+      <TableWithFullBorderCell header={header} cellValue={value} />
     ),
-  ],
-} as Meta;
+  },
+  render: (args) => <Table {...args} />,
+};
 
-export const ColumnCustomWidth: StoryFn<
-  Omit<TableProps<string>, 'cellRender' | 'headerCellRender'>
-> = (props) => (
-  <Table<string>
-    {...props}
-    headers={ffVIITableHeaderCustomWidth}
-    headerCellRender={(header) => <TableWithFullBorderHeader header={header} />}
-    cellRender={(header, rowProps, value) => (
-      <TableWithFullBorderCell header={header} cellValue={value} />
-    )}
-  />
-);
-
-export const ColumnCustomHeight: StoryFn<
-  Omit<TableProps<string>, 'cellRender' | 'headerCellRender'>
-> = (props) => (
-  <Table<string>
-    {...props}
-    data={ffVIIDataCustomHeightMock}
-    headerCellRender={(header) => <TableWithFullBorderHeader header={header} />}
-    cellRender={(header, rowProps, value) => (
-      <TableWithFullBorderCell header={header} cellValue={value} />
-    )}
-  />
-);
+export default meta;
+type Story = StoryObj<TableProps<string>>;
+export const ColumnCustomWidth: Story = { args: { headers: ffVIITableHeaderCustomWidth } };
+export const ColumnCustomHeight: Story = { args: { data: ffVIIDataCustomHeightMock } };

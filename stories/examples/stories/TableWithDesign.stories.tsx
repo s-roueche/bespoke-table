@@ -1,5 +1,5 @@
 import Table from '../../../src/Table';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { TableDataProps, TableHeaderProps, TableProps } from '../../../src/type';
 import HeaderDesign from '../Components/Header/HeaderDesign';
@@ -118,15 +118,21 @@ const ffVIITableHeaderCustomDesign: TableHeaderProps<string>[] = [
     isLastColumn: true,
   },
 ];
-export default {
+
+const meta: Meta<TableProps<string>> = {
   title: 'BespokeTable',
   component: Table,
   args: {
     headers: ffVIITableHeaderCustomDesign,
     data: ffVIIDataWihDesignMock,
+    headerCellRender: (header) => <HeaderDesign header={header} />,
+    cellRender: (header, rowProps, value) => (
+      <CellDesign header={header} cellValue={value} rowProps={rowProps} />
+    ),
+    headerHeight: '60px',
   },
+  render: (args) => <Table {...args} />,
   parameters: {
-    layout: 'centered',
     backgrounds: {
       default: 'gradient',
       values: [
@@ -134,19 +140,15 @@ export default {
       ],
     },
   },
-} as Meta;
+  decorators: [
+    (Story) => (
+      <div style={{ width: '900px', color: 'gray', fontSize: '15px' }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
 
-export const FullDesignExample: StoryFn<
-  Omit<TableProps<string>, 'cellRender' | 'headerCellRender'>
-> = (props) => (
-  <div style={{ width: '900px', color: 'gray', fontSize: '15px' }}>
-    <Table<string>
-      headerCellRender={(header) => <HeaderDesign header={header} />}
-      cellRender={(header, rowProps, value) => (
-        <CellDesign header={header} cellValue={value} rowProps={rowProps} />
-      )}
-      headerHeight={'60px'}
-      {...props}
-    />
-  </div>
-);
+export default meta;
+type Story = StoryObj<TableProps<string>>;
+export const FullyDesigned: Story = {};
