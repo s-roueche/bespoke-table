@@ -14,6 +14,7 @@ export type TableProps<C> = {
   noDataComponent?: ReactNode;
   isLoading?: boolean;
   pagination?: PaginationTableConfigProps;
+  paginationRender?: PaginationRender;
   fallbackRender?: FallbackRender<C>;
 };
 
@@ -74,6 +75,22 @@ export type PaginationTableConfigProps = {
   initialPage?: number;
   rowsPerPage?: number;
   itemsPerPage?: number[];
+  enablePagination?: boolean;
+};
+
+export type PaginationRender = (pagination: PaginationRenderProps) => ReactNode;
+
+export type UsePaginationTableProps = {
+  currentPage: number;
+  rowsPerPage: number;
+  handleChangeRowsPerPage: (rowsPerPage: number) => void;
+  handlePageSelectChange: (page: number) => void;
+  paginationConfig: Omit<PaginationTableConfigProps, 'rowsPerPage'>;
+};
+
+export type PaginationRenderProps = UsePaginationTableProps & {
+  dataLength: number;
+  pageCount: number;
 };
 
 export type FallbackRender<C> = (

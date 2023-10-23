@@ -7,6 +7,7 @@ import { TableProps } from './type';
 import { getDataPaginated } from './utils/tablePaginationUtils';
 import { getDataSorted } from './utils/tableSortUtils';
 import { generateGridTemplateColumns, generateGridTemplateRows } from './utils/tableUtils';
+import Pagination from './Pagination/Pagination';
 
 export default function Table<C>({
   data,
@@ -15,6 +16,7 @@ export default function Table<C>({
   headerCellRender,
   isLoading = false,
   pagination,
+  paginationRender,
   loadingComponent,
   noDataComponent,
   headerSortComponent,
@@ -22,44 +24,55 @@ export default function Table<C>({
   headerHeight,
 }: TableProps<C>) {
   const { order, orderByColumnId, propertyKeyToOrder, handleSort } = useTableSort<C>(headers);
-  const { page, rowsPerPage, ...paginationConfig } = usePaginationTable(pagination);
+  const { currentPage, rowsPerPage, ...paginationConfig } = usePaginationTable(pagination);
   const isDataAvailable = isLoading === false && data.length !== 0;
   const dataSorted = getDataSorted(orderByColumnId, propertyKeyToOrder, data, order);
-  const dataTable = getDataPaginated(dataSorted, page, rowsPerPage, pagination);
+  const dataTable = getDataPaginated(dataSorted, currentPage, rowsPerPage, pagination);
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: generateGridTemplateColumns(headers),
-        gridTemplateRows: isDataAvailable
-          ? generateGridTemplateRows(dataTable, headerHeight)
-          : 'none',
-      }}
-    >
-      <HeaderRow
-        headers={headers}
-        headerCellRender={headerCellRender}
-        handleSort={handleSort}
-        activeColumnIdSorted={orderByColumnId}
-        orderDirection={order}
-        headerSortComponent={headerSortComponent}
-      />
-      {isLoading === false && data.length === 0 && (
-        <div style={{ gridColumn: '1/end' }}>{noDataComponent}</div>
+    <div>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: generateGridTemplateColumns(headers),
+          gridTemplateRows: isDataAvailable
+            ? generateGridTemplateRows(dataTable, headerHeight)
+            : 'none',
+        }}
+      >
+        <HeaderRow
+          headers={headers}
+          headerCellRender={headerCellRender}
+          handleSort={handleSort}
+          activeColumnIdSorted={orderByColumnId}
+          orderDirection={order}
+          headerSortComponent={headerSortComponent}
+        />
+        {isLoading === false && data.length === 0 && (
+          <div style={{ gridColumn: '1/end' }}>{noDataComponent}</div>
+        )}
+        {isDataAvailable &&
+          dataTable.map((row, index) => (
+            <Row
+              key={`row-${row.rowId}`}
+              row={row}
+              headers={headers}
+              cellRender={cellRender}
+              lastRow={index === dataTable.length - 1}
+              fallbackRender={fallbackRender}
+            />
+          ))}
+        {isLoading && <div style={{ gridColumn: '1/end' }}>{loadingComponent}</div>}
+      </div>
+      {isDataAvailable && paginationRender && (
+        <Pagination
+          currentPage={currentPage}
+          rowsPerPage={rowsPerPage}
+          dataLength={data.length}
+          paginationRender={paginationRender}
+          {...paginationConfig}
+        />
       )}
-      {isDataAvailable &&
-        dataTable.map((row, index) => (
-          <Row
-            key={`row-${row.rowId}`}
-            row={row}
-            headers={headers}
-            cellRender={cellRender}
-            lastRow={index === dataTable.length - 1}
-            fallbackRender={fallbackRender}
-          />
-        ))}
-      {isLoading && <div style={{ gridColumn: '1/end' }}>{loadingComponent}</div>}
     </div>
   );
 }

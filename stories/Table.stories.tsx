@@ -18,6 +18,8 @@ import ThrowError from './Components/ThrowError';
 import CellErrorLayout from './Components/Cell/CellErrorLayout';
 import TableHeaderWithSorting from './Components/Header/TableHeaderWithSorting/TableHeaderWithSorting';
 import { SortSwitch } from './Components/Header/TableHeaderWithSorting/SortSwitch';
+import Pagination from './Components/Pagination/Pagination';
+import { generateData } from './Utils/generateData';
 
 export default {
   title: 'BespokeTable/Examples',
@@ -150,6 +152,21 @@ export const ColumnSort: StoryFn<Omit<TableProps<string>, 'cellRender' | 'header
         orderDirection={orderDirection}
       />
     )}
+  />
+);
+
+export const TableWithPagination: StoryFn<
+  Omit<TableProps<string>, 'cellRender' | 'headerCellRender'>
+> = (props) => (
+  <Table<string>
+    headerCellRender={(header) => <TableWithFullBorderHeader header={header} />}
+    cellRender={(header, rowProps, value) => (
+      <TableWithFullBorderCell header={header} cellValue={value} />
+    )}
+    pagination={{ enablePagination: true }}
+    paginationRender={(pagination) => <Pagination {...pagination} />}
+    {...props}
+    data={generateData(100)}
   />
 );
 

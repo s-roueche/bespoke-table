@@ -50,6 +50,9 @@ yarn build-storybook
 yarn deploy-storybook
 ```
 
+## Thanks
+- [@MidoAhmed/rollup-react-library-starter](https://github.com/MidoAhmed/rollup-react-library-starter) : Big thanks for this starter kit
+- [IconBuddy](https://iconbuddy.app/) : For the icon used in the storybook
 
 ## License
 [MIT](LICENSE).

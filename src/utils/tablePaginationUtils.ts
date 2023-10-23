@@ -6,7 +6,8 @@ export function getDataPaginated<C>(
   rowsPerPage: number,
   pagination?: PaginationTableConfigProps,
 ) {
-  return pagination
-    ? dataTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+  const pageIndex = page - 1;
+  return pagination?.enablePagination
+    ? dataTable.slice(pageIndex * rowsPerPage, pageIndex * rowsPerPage + rowsPerPage)
     : dataTable;
 }
