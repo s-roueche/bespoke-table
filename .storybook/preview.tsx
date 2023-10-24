@@ -17,8 +17,12 @@ const preview: Preview = {
   },
   loaders: [
     async () => ({
-      rovers: await (
-        await fetch('https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=DEMO_KEY')
+      roverResponse: await (
+        await fetch(
+          'https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=' +
+            process.env.STORYBOOK_API_NASA_KEY,
+          { cache: 'force-cache' },
+        )
       ).json(),
     }),
   ],

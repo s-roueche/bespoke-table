@@ -1,5 +1,4 @@
 import Table from '../../../src/Table';
-import { ffVIIDataMock, ffVIITableHeader } from '../Utils/tableStoriesMock';
 import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { TableProps } from '../../../src/type';
@@ -7,19 +6,25 @@ import TableWithBorderHeader from '../Components/Header/TableWithBorderHeader';
 import TableWithBorderCell from '../Components/Cell/TableWithBorderCell';
 import TableWithFullBorderHeader from '../Components/Header/TableWithFullBorderHeader';
 import TableWithFullBorderCell from '../Components/Cell/TableWithFullBorderCell';
+import {
+  buildMarsRoverTableData,
+  MarsRoverTableDataProps,
+  marsRoverTableHeader,
+} from '../Utils/marsRoversMockUtils';
 
-const meta: Meta<TableProps<string>> = {
+const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
   title: 'BespokeTable/Border',
   component: Table,
   args: {
-    headers: ffVIITableHeader,
-    data: ffVIIDataMock,
+    headers: marsRoverTableHeader,
   },
-  render: (args) => <Table {...args} />,
+  render: ({ data, ...args }, { loaded: { roverResponse } }) => (
+    <Table data={buildMarsRoverTableData(roverResponse.rovers)} {...args} />
+  ),
 };
 
 export default meta;
-type Story = StoryObj<TableProps<string>>;
+type Story = StoryObj<TableProps<MarsRoverTableDataProps>>;
 export const TableWithBorder: Story = {
   args: {
     headerCellRender: (header) => <TableWithBorderHeader header={header} />,

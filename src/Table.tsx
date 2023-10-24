@@ -58,6 +58,7 @@ export default function Table<C>({
               row={row}
               headers={headers}
               cellRender={cellRender}
+              firstRow={index === 0}
               lastRow={index === dataTable.length - 1}
               fallbackRender={fallbackRender}
             />

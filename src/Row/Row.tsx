@@ -6,12 +6,14 @@ export default function Row<C>({
   row,
   headers,
   cellRender,
+  firstRow,
   lastRow,
   fallbackRender,
 }: {
   row: TableDataProps<C>;
   headers: TableHeaderProps<C>[];
   cellRender: CellRender<C>;
+  firstRow: boolean;
   lastRow: boolean;
   fallbackRender?: FallbackRender<C>;
 }) {
@@ -23,6 +25,7 @@ export default function Row<C>({
         const cell = cells.find((cell) => cell.headerId === header.id);
         const rowProps: RowProps = {
           rowId,
+          firstRow,
           lastRow,
           className,
           meta,

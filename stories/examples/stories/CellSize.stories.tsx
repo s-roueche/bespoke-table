@@ -1,135 +1,68 @@
 import Table from '../../../src/Table';
-import { ffVIIDataMock, ffVIITableHeader } from '../Utils/tableStoriesMock';
 import { Meta, StoryObj } from '@storybook/react';
-import { TableDataProps, TableHeaderProps, TableProps } from '../../../src/type';
+import { TableHeaderProps, TableProps } from '../../../src/type';
 import TableWithFullBorderHeader from '../Components/Header/TableWithFullBorderHeader';
 import TableWithFullBorderCell from '../Components/Cell/TableWithFullBorderCell';
 import React from 'react';
+import { buildMarsRoverTableData, MarsRoverTableDataProps } from '../Utils/marsRoversMockUtils';
 
-const ffVIIDataCustomHeightMock: TableDataProps<string>[] = [
+const marsRoverTableHeader: TableHeaderProps<MarsRoverTableDataProps>[] = [
   {
-    rowId: 'ff7-1',
-    cells: [
-      {
-        headerId: 'col-name',
-        cellData: 'Cloud Strife',
-      },
-      {
-        headerId: 'col-role',
-        cellData: 'Main Protagonist',
-      },
-      {
-        headerId: 'col-weapon',
-        cellData: 'Buster Sword',
-      },
-      {
-        headerId: 'col-class',
-        cellData: 'Soldier',
-      },
-    ],
+    id: 'col-id',
+    title: 'Id',
+    isFirstColumn: true,
+    width: '50px',
   },
-  {
-    rowId: 'ff7-2',
-    rowHeight: '4fr',
-    cells: [
-      {
-        headerId: 'col-name',
-        cellData: 'Aerith Gainsborough',
-      },
-      {
-        headerId: 'col-role',
-        cellData: 'Protagonist',
-      },
-      {
-        headerId: 'col-weapon',
-        cellData: 'Guard Stick',
-      },
-      {
-        headerId: 'col-class',
-        cellData: 'Healer',
-      },
-    ],
-  },
-  {
-    rowId: 'ff7-3',
-    cells: [
-      {
-        headerId: 'col-name',
-        cellData: 'Tifa Lockhart',
-      },
-      {
-        headerId: 'col-role',
-        cellData: 'Protagonist',
-      },
-      {
-        headerId: 'col-weapon',
-        cellData: 'Fists',
-      },
-      {
-        headerId: 'col-class',
-        cellData: 'Fighter',
-      },
-    ],
-  },
-  {
-    rowId: 'ff7-4',
-    cells: [
-      {
-        headerId: 'col-name',
-        cellData: 'Barret Wallace',
-      },
-      {
-        headerId: 'col-role',
-        cellData: 'Protagonist',
-      },
-      {
-        headerId: 'col-weapon',
-        cellData: 'Gun-Arm',
-      },
-      {
-        headerId: 'col-class',
-        cellData: 'Resistant',
-      },
-    ],
-  },
-];
-
-const ffVIITableHeaderCustomWidth: TableHeaderProps<string>[] = [
   {
     id: 'col-name',
     title: 'Name',
-    isFirstColumn: true,
-    width: '2fr',
+    width: '2fr', // Change this value to see the difference
   },
   {
-    id: 'col-role',
-    title: 'Role',
+    id: 'col-launch-date',
+    title: 'Launch date',
   },
   {
-    id: 'col-weapon',
-    title: 'Weapon',
+    id: 'col-landing-date',
+    title: 'Landing date',
   },
   {
-    id: 'col-class',
-    title: 'Class',
+    id: 'col-status',
+    title: 'Status',
+  },
+  {
+    id: 'col-last-activity-date',
+    title: 'Last activity',
+  },
+  {
+    id: 'col-photos-count',
+    title: 'Photos',
     isLastColumn: true,
   },
 ];
-const meta: Meta<TableProps<string>> = {
+
+const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
   title: 'BespokeTable/Cell size',
   component: Table,
   args: {
-    headers: ffVIITableHeader,
-    data: ffVIIDataMock,
     headerCellRender: (header) => <TableWithFullBorderHeader header={header} />,
     cellRender: (header, rowProps, value) => (
       <TableWithFullBorderCell header={header} cellValue={value} />
     ),
   },
-  render: (args) => <Table {...args} />,
 };
 
 export default meta;
-type Story = StoryObj<TableProps<string>>;
-export const ColumnCustomWidth: Story = { args: { headers: ffVIITableHeaderCustomWidth } };
-export const ColumnCustomHeight: Story = { args: { data: ffVIIDataCustomHeightMock } };
+type Story = StoryObj<TableProps<MarsRoverTableDataProps>>;
+export const ColumnCustomWidth: Story = {
+  args: { headers: marsRoverTableHeader },
+  render: ({ data, ...args }, { loaded: { roverResponse } }) => (
+    <Table data={buildMarsRoverTableData(roverResponse.rovers)} {...args} />
+  ),
+};
+export const ColumnCustomHeight: Story = {
+  args: { headers: marsRoverTableHeader },
+  render: ({ data, ...args }, { loaded: { roverResponse } }) => (
+    <Table data={buildMarsRoverTableData(roverResponse.rovers, '30px')} {...args} />
+  ),
+};

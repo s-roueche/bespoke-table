@@ -1,5 +1,4 @@
 import Table from '../../../src/Table';
-import { ffVIIDataMock, ffVIITableHeader } from '../Utils/tableStoriesMock';
 import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { TableProps } from '../../../src/type';
@@ -7,26 +6,32 @@ import TableWithFullBorderHeader from '../Components/Header/TableWithFullBorderH
 import ThrowError from '../Components/ThrowError';
 import TableWithFullBorderCell from '../Components/Cell/TableWithFullBorderCell';
 import CellErrorLayout from '../Components/Cell/CellErrorLayout';
+import {
+  buildMarsRoverTableData,
+  MarsRoverTableDataProps,
+  marsRoverTableHeader,
+} from '../Utils/marsRoversMockUtils';
 
-const meta: Meta<TableProps<string>> = {
+const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
   title: 'BespokeTable/Error Management',
   component: Table,
   args: {
-    headers: ffVIITableHeader,
-    data: ffVIIDataMock,
+    headers: marsRoverTableHeader,
     headerCellRender: (header) => <TableWithFullBorderHeader header={header} />,
     cellRender: (header, rowProps, value) =>
-      header.id === 'col-role' ? (
+      header.id === 'col-name' ? (
         <ThrowError />
       ) : (
         <TableWithFullBorderCell header={header} cellValue={value} />
       ),
   },
-  render: (args) => <Table {...args} />,
+  render: ({ data, ...args }, { loaded: { roverResponse } }) => (
+    <Table data={buildMarsRoverTableData(roverResponse.rovers)} {...args} />
+  ),
 };
 
 export default meta;
-type Story = StoryObj<TableProps<string>>;
+type Story = StoryObj<TableProps<MarsRoverTableDataProps>>;
 export const ErrorBoundaryDefaultRendering: Story = {};
 export const ErrorBoundaryCustomRendering: Story = {
   args: {

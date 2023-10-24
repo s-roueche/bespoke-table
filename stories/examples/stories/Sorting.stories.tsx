@@ -1,43 +1,59 @@
 import Table from '../../../src/Table';
-import { ffVIIDataMock } from '../Utils/tableStoriesMock';
 import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { TableHeaderProps, TableProps } from '../../../src/type';
 import TableHeaderWithSorting from '../Components/Header/TableHeaderWithSorting/TableHeaderWithSorting';
 import TableWithFullBorderCell from '../Components/Cell/TableWithFullBorderCell';
 import { SortSwitch } from '../Components/Header/TableHeaderWithSorting/SortSwitch';
+import { buildMarsRoverTableData, MarsRoverTableDataProps } from '../Utils/marsRoversMockUtils';
 
-const ffVIITableHeaderWithSorting: TableHeaderProps<string>[] = [
+const marsRoverTableHeader: TableHeaderProps<MarsRoverTableDataProps>[] = [
   {
-    id: 'col-name',
-    title: 'Name',
+    id: 'col-id',
+    title: 'Id',
     isFirstColumn: true,
-    propertyKeyToOrder: 'toString',
+    width: '80px',
+    propertyKeyToOrder: 'value',
     defaultSortDirection: 'asc',
   },
   {
-    id: 'col-role',
-    title: 'Role',
+    id: 'col-name',
+    title: 'Name',
+    propertyKeyToOrder: 'value',
   },
   {
-    id: 'col-weapon',
-    title: 'Weapon',
-    propertyKeyToOrder: 'toString',
+    id: 'col-launch-date',
+    title: 'Launch date',
+    propertyKeyToOrder: 'sortValue',
   },
   {
-    id: 'col-class',
-    title: 'Class',
+    id: 'col-landing-date',
+    title: 'Landing date',
+    propertyKeyToOrder: 'sortValue',
+  },
+  {
+    id: 'col-status',
+    title: 'Status',
+    propertyKeyToOrder: 'value',
+  },
+  {
+    id: 'col-last-activity-date',
+    title: 'Last activity',
+    propertyKeyToOrder: 'sortValue',
+  },
+  {
+    id: 'col-photos-count',
+    title: 'Photos',
     isLastColumn: true,
-    propertyKeyToOrder: 'toString',
+    propertyKeyToOrder: 'value',
   },
 ];
 
-const meta: Meta<TableProps<string>> = {
+const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
   title: 'BespokeTable',
   component: Table,
   args: {
-    headers: ffVIITableHeaderWithSorting,
-    data: ffVIIDataMock,
+    headers: marsRoverTableHeader,
     headerCellRender: (header, sortComponent) => (
       <TableHeaderWithSorting header={header} sortComponent={sortComponent} />
     ),
@@ -52,9 +68,11 @@ const meta: Meta<TableProps<string>> = {
       />
     ),
   },
-  render: (args) => <Table {...args} />,
+  render: ({ data, ...args }, { loaded: { roverResponse } }) => (
+    <Table data={buildMarsRoverTableData(roverResponse.rovers)} {...args} />
+  ),
 };
 
 export default meta;
-type Story = StoryObj<TableProps<string>>;
+type Story = StoryObj<TableProps<MarsRoverTableDataProps>>;
 export const Sorting: Story = {};

@@ -1,21 +1,26 @@
 import Table from '../../../src/Table';
-import { ffVIIDataMock, ffVIITableHeader } from '../Utils/tableStoriesMock';
 import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { TableProps } from '../../../src/type';
+import {
+  buildMarsRoverTableData,
+  MarsRoverTableDataProps,
+  marsRoverTableHeader,
+} from '../Utils/marsRoversMockUtils';
 
-const meta: Meta<TableProps<string>> = {
+const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
   title: 'BespokeTable',
   component: Table,
   args: {
-    headers: ffVIITableHeader,
-    data: ffVIIDataMock,
+    headers: marsRoverTableHeader,
     headerCellRender: (header) => <span>{header.title}</span>,
-    cellRender: (header, rowProps, value) => <span>{value}</span>,
+    cellRender: (header, rowProps, cell) => <span>{cell?.value}</span>,
   },
-  render: (args) => <Table {...args} />,
+  render: ({ data, ...args }, { loaded: { roverResponse } }) => (
+    <Table data={buildMarsRoverTableData(roverResponse.rovers)} {...args} />
+  ),
 };
 
 export default meta;
-type Story = StoryObj<TableProps<string>>;
+type Story = StoryObj<TableProps<MarsRoverTableDataProps>>;
 export const DefaultTable: Story = {};

@@ -1,9 +1,10 @@
 import { TableHeaderProps } from '../../../../src/type';
 import React from 'react';
+import { MarsRoverTableDataProps } from '../../Utils/marsRoversMockUtils';
 
 type TableWithBorderCellProps = {
-  header: TableHeaderProps<string>;
-  cellValue?: string;
+  header: TableHeaderProps<MarsRoverTableDataProps>;
+  cellValue?: MarsRoverTableDataProps;
 };
 
 const TableWithFullBorderCell = ({ header, cellValue }: TableWithBorderCellProps) => {
@@ -16,7 +17,7 @@ const TableWithFullBorderCell = ({ header, cellValue }: TableWithBorderCellProps
         borderRight: borderStyle,
       }}
     >
-      <p style={{ paddingLeft: '4px' }}>{cellValue}</p>
+      <p style={{ paddingLeft: '4px' }}>{cellValue?.value}</p>
     </div>
   );
 };

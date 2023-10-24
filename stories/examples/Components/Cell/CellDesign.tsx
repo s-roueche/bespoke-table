@@ -1,9 +1,10 @@
 import { RowProps, TableHeaderProps } from '../../../../src/type';
 import React from 'react';
+import { MarsRoverTableDataProps } from '../../Utils/marsRoversMockUtils';
 
 type TableWithBorderCellProps = {
-  header: TableHeaderProps<string>;
-  cellValue?: string;
+  header: TableHeaderProps<MarsRoverTableDataProps>;
+  cellValue?: MarsRoverTableDataProps;
   rowProps: RowProps;
 };
 
@@ -24,7 +25,7 @@ const CellDesign = ({ header, cellValue, rowProps }: TableWithBorderCellProps) =
         alignItems: 'center',
       }}
     >
-      <p>{cellValue}</p>
+      <p>{cellValue?.value}</p>
     </div>
   );
 };

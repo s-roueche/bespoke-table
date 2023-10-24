@@ -1,20 +1,20 @@
 import { RowProps, TableHeaderProps } from '../../../../src/type';
 import React from 'react';
+import { MarsRoverTableDataProps } from '../../Utils/marsRoversMockUtils';
 
 type TableWithBorderCellProps = {
-  header: TableHeaderProps<string>;
-  cellValue?: string;
+  header: TableHeaderProps<MarsRoverTableDataProps>;
+  cellValue?: MarsRoverTableDataProps;
   rowProps: RowProps;
 };
 
 const TableWithCellsMerged = ({ header, cellValue, rowProps }: TableWithBorderCellProps) => {
   const borderStyle = '1px solid black';
-  const { meta, rowId } = rowProps;
-  if (meta?.espaceRoleColumn && header.id === 'col-role') {
+  if (!rowProps.firstRow && header.id === 'col-id') {
     return <></>;
   }
 
-  const isRowWeWantToMerged = header.id === 'col-role' && rowId === 'ff7-2';
+  const isRowMerged = header.id === 'col-id' && rowProps.firstRow;
   return (
     <div
       style={{
@@ -22,13 +22,13 @@ const TableWithCellsMerged = ({ header, cellValue, rowProps }: TableWithBorderCe
         borderBottom: borderStyle,
         borderLeft: header.isFirstColumn ? borderStyle : 'none',
         borderRight: borderStyle,
-        gridRow: isRowWeWantToMerged ? '3/ 6' : 'initial',
-        gridColumn: isRowWeWantToMerged ? '2' : 'initial',
-        justifyContent: isRowWeWantToMerged ? 'center' : 'initial',
-        alignItems: isRowWeWantToMerged ? 'center' : 'initial',
+        gridRow: isRowMerged ? '2 / end' : 'initial',
+        gridColumn: isRowMerged ? '1' : 'initial',
+        justifyContent: isRowMerged ? 'center' : 'initial',
+        alignItems: isRowMerged ? 'center' : 'initial',
       }}
     >
-      <p style={{ paddingLeft: '4px' }}>{cellValue}</p>
+      <p style={{ paddingLeft: '4px' }}>{isRowMerged ? '-' : cellValue?.value}</p>
     </div>
   );
 };

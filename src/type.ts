@@ -54,6 +54,7 @@ export type HeaderSortComponent = (
 
 export type RowProps = {
   rowId: string;
+  firstRow: boolean;
   lastRow: boolean;
   className?: string;
   meta?: Record<string, unknown>;

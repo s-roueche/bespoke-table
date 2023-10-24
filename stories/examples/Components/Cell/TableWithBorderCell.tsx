@@ -1,10 +1,11 @@
 import { TableHeaderProps } from '../../../../src/type';
 import React from 'react';
+import { MarsRoverTableDataProps } from '../../Utils/marsRoversMockUtils';
 
 type TableWithBorderCellProps = {
-  header: TableHeaderProps<string>;
+  header: TableHeaderProps<MarsRoverTableDataProps>;
   lastRow: boolean;
-  cellValue?: string;
+  cellValue?: MarsRoverTableDataProps;
 };
 
 const TableWithBorderCell = ({ header, lastRow, cellValue }: TableWithBorderCellProps) => {
@@ -17,7 +18,7 @@ const TableWithBorderCell = ({ header, lastRow, cellValue }: TableWithBorderCell
         borderRight: header.isLastColumn ? borderStyle : 'none',
       }}
     >
-      <p>{cellValue}</p>
+      <p>{cellValue?.value}</p>
     </div>
   );
 };

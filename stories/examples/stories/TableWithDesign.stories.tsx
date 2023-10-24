@@ -1,137 +1,29 @@
 import Table from '../../../src/Table';
 import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { TableDataProps, TableHeaderProps, TableProps } from '../../../src/type';
+import { TableProps } from '../../../src/type';
 import HeaderDesign from '../Components/Header/HeaderDesign';
 import CellDesign from '../Components/Cell/CellDesign';
+import {
+  buildMarsRoverTableData,
+  MarsRoverTableDataProps,
+  marsRoverTableHeader,
+} from '../Utils/marsRoversMockUtils';
 
-const ffVIIDataWihDesignMock: TableDataProps<string>[] = [
-  {
-    rowId: 'ff7-1',
-    rowHeight: '50px',
-    className: 'odd',
-    cells: [
-      {
-        headerId: 'col-name',
-        cellData: 'Cloud Strife',
-      },
-      {
-        headerId: 'col-role',
-        cellData: 'Main Protagonist',
-      },
-      {
-        headerId: 'col-weapon',
-        cellData: 'Buster Sword',
-      },
-      {
-        headerId: 'col-class',
-        cellData: 'Soldier',
-      },
-    ],
-  },
-  {
-    rowId: 'ff7-2',
-    rowHeight: '50px',
-    cells: [
-      {
-        headerId: 'col-name',
-        cellData: 'Aerith Gainsborough',
-      },
-      {
-        headerId: 'col-role',
-        cellData: 'Protagonist',
-      },
-      {
-        headerId: 'col-weapon',
-        cellData: 'Guard Stick',
-      },
-      {
-        headerId: 'col-class',
-        cellData: 'Healer',
-      },
-    ],
-  },
-  {
-    rowId: 'ff7-3',
-    rowHeight: '50px',
-    className: 'odd',
-    cells: [
-      {
-        headerId: 'col-name',
-        cellData: 'Tifa Lockhart',
-      },
-      {
-        headerId: 'col-role',
-        cellData: 'Protagonist',
-      },
-      {
-        headerId: 'col-weapon',
-        cellData: 'Fists',
-      },
-      {
-        headerId: 'col-class',
-        cellData: 'Fighter',
-      },
-    ],
-  },
-  {
-    rowId: 'ff7-4',
-    rowHeight: '50px',
-    cells: [
-      {
-        headerId: 'col-name',
-        cellData: 'Barret Wallace',
-      },
-      {
-        headerId: 'col-role',
-        cellData: 'Protagonist',
-      },
-      {
-        headerId: 'col-weapon',
-        cellData: 'Gun-Arm',
-      },
-      {
-        headerId: 'col-class',
-        cellData: 'Resistant',
-      },
-    ],
-  },
-];
-
-const ffVIITableHeaderCustomDesign: TableHeaderProps<string>[] = [
-  {
-    id: 'col-name',
-    title: 'Name',
-    isFirstColumn: true,
-  },
-  {
-    id: 'col-role',
-    title: 'Role',
-  },
-  {
-    id: 'col-weapon',
-    title: 'Weapon',
-  },
-  {
-    id: 'col-class',
-    title: 'Class',
-    isLastColumn: true,
-  },
-];
-
-const meta: Meta<TableProps<string>> = {
+const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
   title: 'BespokeTable',
   component: Table,
   args: {
-    headers: ffVIITableHeaderCustomDesign,
-    data: ffVIIDataWihDesignMock,
+    headers: marsRoverTableHeader,
     headerCellRender: (header) => <HeaderDesign header={header} />,
     cellRender: (header, rowProps, value) => (
       <CellDesign header={header} cellValue={value} rowProps={rowProps} />
     ),
     headerHeight: '60px',
   },
-  render: (args) => <Table {...args} />,
+  render: ({ data, ...args }, { loaded: { roverResponse } }) => (
+    <Table data={buildMarsRoverTableData(roverResponse.rovers, '50px', true)} {...args} />
+  ),
   parameters: {
     backgrounds: {
       default: 'gradient',
@@ -150,5 +42,5 @@ const meta: Meta<TableProps<string>> = {
 };
 
 export default meta;
-type Story = StoryObj<TableProps<string>>;
+type Story = StoryObj<TableProps<MarsRoverTableDataProps>>;
 export const FullyDesigned: Story = {};
