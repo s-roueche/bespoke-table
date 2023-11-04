@@ -1,13 +1,12 @@
-import { PaginationTableConfigProps, TableDataProps } from '../type';
+import { PaginationTableConfigProps, TableDataProps, UsePaginationTableProps } from '../type';
 
 export function getDataPaginated<C>(
   dataTable: TableDataProps<C>[],
-  page: number,
-  rowsPerPage: number,
-  pagination?: PaginationTableConfigProps,
+  pagination: Pick<UsePaginationTableProps, 'currentPage' | 'rowsPerPage' | 'enablePagination'>,
 ) {
-  const pageIndex = page - 1;
-  return pagination?.enablePagination
+  const pageIndex = pagination.currentPage - 1;
+  const rowsPerPage = pagination.rowsPerPage;
+  return pagination.enablePagination
     ? dataTable.slice(pageIndex * rowsPerPage, pageIndex * rowsPerPage + rowsPerPage)
     : dataTable;
 }

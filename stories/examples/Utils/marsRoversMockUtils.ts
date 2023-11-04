@@ -15,9 +15,38 @@ export interface MarsRoverApiResponseProps {
 }
 
 export interface Camera {
-  name: 'FHAZ' | 'NAVCAM' | 'MAST' | 'CHEMCAM' | 'MAHLI' | 'MARDI' | 'RHAZ';
+  name: CameraName;
   full_name: string;
 }
+
+type CameraName =
+  | 'FHAZ'
+  | 'NAVCAM'
+  | 'MAST'
+  | 'CHEMCAM'
+  | 'MAHLI'
+  | 'MARDI'
+  | 'RHAZ'
+  | 'PANCAM'
+  | 'MINITES'
+  | 'ENTRY'
+  | 'EDL_RUCAM'
+  | 'EDL_DDCAM'
+  | 'EDL_PUCAM1'
+  | 'EDL_PUCAM2'
+  | 'NAVCAM_LEFT'
+  | 'NAVCAM_RIGHT'
+  | 'MCZ_RIGHT'
+  | 'MCZ_LEFT'
+  | 'FRONT_HAZCAM_LEFT_A'
+  | 'FRONT_HAZCAM_RIGHT_A'
+  | 'REAR_HAZCAM_LEFT'
+  | 'REAR_HAZCAM_RIGHT'
+  | 'EDL_RDCAM'
+  | 'SKYCAM'
+  | 'SHERLOC_WATSON'
+  | 'SUPERCAM_RMI'
+  | 'LCAM';
 
 export type MarsRoverTableDataProps = {
   value: string | number;

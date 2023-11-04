@@ -1,17 +1,6 @@
 import { isFunction } from 'lodash';
 import { Order, TableDataProps, TableHeaderProps } from '../type';
 
-export function getDataSorted<C>(
-  orderByColumnId: string | undefined,
-  propertyKeyToOrder: keyof C | undefined,
-  data: TableDataProps<C>[],
-  order: Order,
-) {
-  return orderByColumnId && propertyKeyToOrder
-    ? sortTableData(data, orderByColumnId, propertyKeyToOrder, order)
-    : data;
-}
-
 export function getNextOrderDirection(
   nextColumnIdToSort: string,
   currentOrderDirection: Order,
@@ -27,7 +16,18 @@ export function getDefaultColumnSort<C>(headers: TableHeaderProps<C>[]) {
   return headers.find((header) => header.defaultSortDirection !== undefined);
 }
 
-export function sortTableData<C>(
+export function getDataSorted<C>(
+  orderByColumnId: string | undefined,
+  propertyKeyToOrder: keyof C | undefined,
+  data: TableDataProps<C>[],
+  order: Order,
+) {
+  return orderByColumnId && propertyKeyToOrder
+    ? sortTableData(data, orderByColumnId, propertyKeyToOrder, order)
+    : data;
+}
+
+function sortTableData<C>(
   data: TableDataProps<C>[],
   orderByColumnId: string,
   propertyKeyToOrder: keyof C,
@@ -59,7 +59,7 @@ function getCellValue<C>(rows: TableDataProps<C>, propertyKey: keyof C, columnId
   return 0;
 }
 
-export function descendingComparator(a: any, b: any) {
+function descendingComparator(a: any, b: any) {
   if (b < a) {
     return -1;
   }

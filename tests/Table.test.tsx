@@ -1,16 +1,20 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Table from '../src/Table';
-import { testMockData, testMockHeader } from './tableTestMock';
+import {
+  buildMarsRoverTableDataTest,
+  marsRoverTableHeaderTestMock,
+  roversDataTestMock,
+} from './mock/testMock';
 
 describe('Table', () => {
   test('renders the Table component', () => {
     render(
       <Table
-        data={testMockData}
-        headers={testMockHeader}
+        data={buildMarsRoverTableDataTest(roversDataTestMock)}
+        headers={marsRoverTableHeaderTestMock}
         headerCellRender={(header) => <span>{header.title}</span>}
-        cellRender={(header, rowId, lastRow, value) => <span>{value}</span>}
+        cellRender={(header, rowId, cellData) => <span>{cellData?.value}</span>}
       />,
     );
   });

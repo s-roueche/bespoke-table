@@ -6,7 +6,7 @@ const headers = [
   { id: 'col-weapon', name: 'Weapon' },
   { id: 'col-class', name: 'Class' },
 ];
-export const generateData = (length: number) => {
+export const generateBasicMockData = (length: number) => {
   const data = [];
 
   for (let i = 0; i < length; i++) {

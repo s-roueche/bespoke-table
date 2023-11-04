@@ -1,29 +1,23 @@
 import React from 'react';
 import { PaginationRender, PaginationRenderProps, UsePaginationTableProps } from '../type';
 
-type PaginationProps = UsePaginationTableProps & {
+type PaginationProps = {
   dataLength: number;
   paginationRender: PaginationRender;
+  paginationConfig: UsePaginationTableProps;
 };
 
 export default function Pagination<C>({
   dataLength,
-  currentPage,
-  rowsPerPage,
-  paginationConfig,
-  handleChangeRowsPerPage,
-  handlePageSelectChange,
   paginationRender,
+  paginationConfig,
 }: PaginationProps) {
-  const pageCount = Math.ceil(dataLength / rowsPerPage);
+  const { rowsPerPage, ...paginationConfigRest } = paginationConfig;
   const paginationRenderData: PaginationRenderProps = {
     rowsPerPage,
-    paginationConfig,
-    handleChangeRowsPerPage,
-    handlePageSelectChange,
-    currentPage: currentPage,
     dataLength,
-    pageCount,
+    pageCount: Math.ceil(dataLength / rowsPerPage),
+    ...paginationConfigRest,
   };
   return paginationRender(paginationRenderData);
 }

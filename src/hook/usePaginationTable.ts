@@ -4,7 +4,7 @@ import { PaginationTableConfigProps, UsePaginationTableProps } from '../type';
 export function usePaginationTable(
   pagination?: PaginationTableConfigProps,
 ): UsePaginationTableProps {
-  const paginationConfig = {
+  const { rowsPerPage: defaultRowPerPage, ...paginationConfig } = {
     initialPage: 1,
     rowsPerPage: 10,
     itemsPerPage: [5, 10, 25, 50],
@@ -12,7 +12,7 @@ export function usePaginationTable(
     ...pagination,
   };
   const [page, setPage] = useState(paginationConfig.initialPage);
-  const [rowsPerPage, setRowsPerPage] = useState(paginationConfig.rowsPerPage);
+  const [rowsPerPage, setRowsPerPage] = useState(defaultRowPerPage);
 
   const handleChangeRowsPerPage = (rowsPerPage: number) => {
     setRowsPerPage(rowsPerPage);
@@ -28,6 +28,6 @@ export function usePaginationTable(
     rowsPerPage,
     handleChangeRowsPerPage,
     handlePageSelectChange,
-    paginationConfig,
+    ...paginationConfig,
   };
 }

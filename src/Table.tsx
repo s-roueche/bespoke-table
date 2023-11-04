@@ -24,10 +24,10 @@ export default function Table<C>({
   headerHeight,
 }: TableProps<C>) {
   const { order, orderByColumnId, propertyKeyToOrder, handleSort } = useTableSort<C>(headers);
-  const { currentPage, rowsPerPage, ...paginationConfig } = usePaginationTable(pagination);
+  const paginationConfig = usePaginationTable(pagination);
   const isDataAvailable = isLoading === false && data.length !== 0;
   const dataSorted = getDataSorted(orderByColumnId, propertyKeyToOrder, data, order);
-  const dataTable = getDataPaginated(dataSorted, currentPage, rowsPerPage, pagination);
+  const dataTable = getDataPaginated(dataSorted, paginationConfig);
 
   return (
     <div>
@@ -67,11 +67,9 @@ export default function Table<C>({
       </div>
       {isDataAvailable && paginationRender && (
         <Pagination
-          currentPage={currentPage}
-          rowsPerPage={rowsPerPage}
           dataLength={data.length}
           paginationRender={paginationRender}
-          {...paginationConfig}
+          paginationConfig={paginationConfig}
         />
       )}
     </div>

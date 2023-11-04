@@ -83,11 +83,9 @@ export type PaginationRender = (pagination: PaginationRenderProps) => ReactNode;
 
 export type UsePaginationTableProps = {
   currentPage: number;
-  rowsPerPage: number;
   handleChangeRowsPerPage: (rowsPerPage: number) => void;
   handlePageSelectChange: (page: number) => void;
-  paginationConfig: Omit<PaginationTableConfigProps, 'rowsPerPage'>;
-};
+} & Required<PaginationTableConfigProps>;
 
 export type PaginationRenderProps = UsePaginationTableProps & {
   dataLength: number;

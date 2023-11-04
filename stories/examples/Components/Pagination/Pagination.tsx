@@ -2,14 +2,13 @@ import { PaginationRenderProps } from '../../../../src/type';
 import React from 'react';
 
 const Pagination = ({
-  paginationConfig,
   handleChangeRowsPerPage,
   handlePageSelectChange,
   rowsPerPage,
   currentPage,
   pageCount,
+  itemsPerPage,
 }: PaginationRenderProps) => {
-  const { itemsPerPage } = paginationConfig;
   return (
     <div className='pagination'>
       <span>Item per page :</span>
