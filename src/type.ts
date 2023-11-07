@@ -1,7 +1,7 @@
 import { Component, FunctionComponent, ReactElement, ReactNode } from 'react';
 
 export type Order = 'asc' | 'desc';
-export type Size = `${string}${'px' | 'fr'}`;
+export type Size = `${string}${'px' | 'fr' | '%' | 'em' | 'rem' | 'vh' | 'vw'}`;
 
 export type TableProps<C> = {
   headers: TableHeaderProps<C>[];
