@@ -42,16 +42,8 @@ export const marsRoverTableHeaderTestMock: TableHeaderProps<MarsRoverTableDataTe
     title: 'Launch date',
   },
   {
-    id: 'col-landing-date',
-    title: 'Landing date',
-  },
-  {
     id: 'col-status',
     title: 'Status',
-  },
-  {
-    id: 'col-last-activity-date',
-    title: 'Last activity',
   },
   {
     id: 'col-photos-count',

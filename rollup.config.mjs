@@ -26,8 +26,8 @@ export default [
 		],
 		plugins: [
 			peerDepsExternal(),
-			resolve(),
 			commonjs(),
+			resolve(),
 			typescript({ tsconfig: "./tsconfig.json", include: [ 'src/**/*.tsx', 'src/**/*.ts'] }),
 			terser()
 		]

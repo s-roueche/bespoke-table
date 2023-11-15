@@ -1,4 +1,4 @@
-import { PaginationTableConfigProps, TableDataProps, UsePaginationTableProps } from '../type';
+import { TableDataProps, UsePaginationTableProps } from '../type';
 
 export function getDataPaginated<C>(
   dataTable: TableDataProps<C>[],
