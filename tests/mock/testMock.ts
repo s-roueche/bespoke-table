@@ -52,6 +52,35 @@ export const marsRoverTableHeaderTestMock: TableHeaderProps<MarsRoverTableDataTe
   },
 ];
 
+export const marsRoverTableHeaderTestWithSortMock: TableHeaderProps<MarsRoverTableDataTestProps>[] =
+  [
+    {
+      id: 'col-id',
+      title: 'Id',
+      isFirstColumn: true,
+      width: '50px',
+    },
+    {
+      id: 'col-name',
+      title: 'Name',
+    },
+    {
+      id: 'col-launch-date',
+      title: 'Launch date',
+      defaultSortDirection: 'desc',
+      propertyKeyToOrder: 'value',
+    },
+    {
+      id: 'col-status',
+      title: 'Status',
+    },
+    {
+      id: 'col-photos-count',
+      title: 'Photos',
+      isLastColumn: true,
+    },
+  ];
+
 export const roversDataTestMock: MarsRoverDataTestProps[] = [
   {
     id: 5,
