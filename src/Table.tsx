@@ -1,8 +1,8 @@
 import React from 'react';
 import HeaderRow from './Header/HeaderRow';
 import Row from './Row/Row';
-import { useTableSort } from './hook/useOrderTable';
-import { usePaginationTable } from './hook/usePaginationTable';
+import { useTableSort } from './hooks/useOrderTable';
+import { usePaginationTable } from './hooks/usePaginationTable';
 import { TableProps } from './type';
 import { getDataPaginated } from './utils/tablePaginationUtils';
 import { getDataSorted } from './utils/tableSortUtils';
