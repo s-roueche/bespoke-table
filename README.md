@@ -1,58 +1,373 @@
-# Bespoke Table
-A lightweight and highly customizable table component for React. Designed with flexibility in mind, this component is perfect for developers who want full control over their table's appearance and behavior without the bloat of heavier solutions.
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/s-roueche/bespoke-table">
+    <img src="images/bespoke-table.png" alt="Logo" width="80" height="80">
+  </a>
+
+<h3 align="center">Bespoke-Table</h3>
+  <p align="center">
+    A react table generator compatible with all design systems, just stay focus on your UX/UI.
+    <br />
+    <a href="https://s-roueche.github.io/bespoke-table"><strong>View Demo</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/s-roueche/bespoke-table/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/s-roueche/bespoke-table/issues">Request Feature</a>
+    .
+    <a href="https://s-roueche.github.io/bespoke-table/CONTRIBUTING.md">Contributing</a>
+  </p>
+</div>
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+[![Bespoke-table Shot][product-screenshot]](https://example.com)
+
+# Bespoke-Table
+
+Bespoke-Table is a flexible and extensible React library for generate tables. Designed to seamlessly integrate with any
+design system, it allows developers to focus on styling and user experience while efficiently managing the table's
+structure and functionality.
+
+Designed with flexibility in mind, this component is perfect for developers who want full control over their table's
+appearance and behavior without the bloat of heavier solutions.
 
 ## Features
-- [Rollup](https://rollupjs.org/) for bundling
-- Bundles `commonjs` and `es` module formats
-- [Jest](https://facebook.github.io/jest/) & [React Testing Library](https://testing-library.com/)  : For testing our components
-- Support for [TypeScript](https://www.typescriptlang.org/)
-- Sourcemap creation
-- [Storybook](https://storybook.js.org/): For testing our components within the library itself as we design them
-- Optimizing bundle size: [@rollup/plugin-terser](https://www.npmjs.com/package/@rollup/plugin-terser) A Rollup plugin to generate a minified bundle with terser.
-- Automatically externalize peerDependencies in a rollup bundle, thanks to [rollup-plugin-peer-deps-external](https://www.npmjs.com/package/rollup-plugin-peer-deps-external)
-- Eslint
-- Deploy Storybook to GitHub Pages
 
-## Getting started
+- **Flexible**: Integrates with any design system for custom styling.
+- **Extensible**: Easily extendable with custom features as per project requirements.
+- **Type-safe**: Fully typed with TypeScript for an enhanced development experience.
+- **React-friendly**: Utilizes the latest React features for seamless integration.
+- **Performant**: Optimized for fast performance, even with large data sets.
+
+## Installation
+
+You can install Bespoke-Table using npm or yarn:
+
 ```bash
-git clone https://github.com/s-roueche/bespoke-table.git
-cd bespoke-table
-yarn
+npm install Bespoke-Table
+or 
+yarn add Bespoke-Table
 ```
 
-### Development:
-- Storybook:
-    - Storybook gives you an easy way to see and use your components while working on them in your library project, without having to build an unnecessary testing page just to display them.
-        ```bash
-        yarn storybook # runs the host Storybook application locally for quick and easy testing
-        ```
-Now, anytime you make a change to your library or the stories, the storybook will live-reload your local dev server so you can iterate on your component in real-time.
+## Usage
 
-- Rollup watch and build:
-    - for Local development run rollup to watch your src/ module and automatically recompile it into dist/ whenever you make changes.
-        ```bash
-        yarn dev # runs rollup with watch flag
-        ```
+To start using Bespoke-Table, this is a simple example of how to use it :
 
-### Scripts:
-- `npm run build` : builds the library to `dist`
-- `npm run dev`  : builds the library, then keeps rebuilding it whenever the source files change.
-- `npm test` : tests the library and show the coverage.
-- `npm run lint` : runs eslint.
-- `npm run storybook` : runs the host Storybook application locally for quick and easy testing
-- `npm run build-storybook` : builds a static HTML/JS bundle that can easily be hosted on a remote server, so all members of your team can try your components.
-- `npm run deploy-storybook` : build & deploy the storybook to GitHub Pages
+```tsx
+import React from 'react';
+import {Table, TableHeaderProps} from 'bespoke-table';
 
-### Deploy Storybook to GitHub Pages:
- 
-```bash
-yarn build-storybook 
-yarn deploy-storybook
+const MyTable = () => {
+    const data = [{
+        rowId: 'row-1',
+        cells: [
+            {
+                headerId: 'col-id',
+                cellData: {
+                    value: 'rover-curiosity',
+                },
+            },
+            {
+                headerId: 'col-name',
+                cellData: {
+                    value: 'Curiosity',
+                },
+            },
+            {
+                headerId: 'col-status',
+                cellData: {
+                    value: 'active',
+                },
+            },
+            {
+                headerId: 'col-photos-count',
+                cellData: {
+                    value: '693,552',
+                },
+            },
+        ],
+    }, {
+        rowId: 'row-2',
+        cells: [
+            {
+                headerId: 'col-id',
+                cellData: {
+                    value: 'rover-perseverance',
+                },
+            },
+            {
+                headerId: 'col-name',
+                cellData: {
+                    value: 'Perseverance',
+                },
+            },
+            {
+                headerId: 'col-status',
+                cellData: {
+                    value: 'active',
+                },
+            },
+            {
+                headerId: 'col-photos-count',
+                cellData: {
+                    value: '194,374',
+                },
+            },
+        ],
+    }];
+
+    const headers: TableHeaderProps<string>[] = [
+        {
+            id: 'col-id',
+            title: 'Id',
+            isFirstColumn: true,
+            width: '50px',
+        },
+        {
+            id: 'col-name',
+            title: 'Name',
+        },
+        {
+            id: 'col-status',
+            title: 'Status',
+        },
+        {
+            id: 'col-photos-count',
+            title: 'Photos',
+            isLastColumn: true,
+        },
+    ];
+
+    return (
+        <Table headers={headers}
+               headerCellRender={(header) => <span>{header.title}</span>}
+               data={data}
+               cellRender={(header, rowProps, cell) => <span>{cell?.value}</span>}
+        />
+    );
+}
+
+export default MyTable;
 ```
+
+## Props
+
+### headers
+
+An array of object [`TableHeaderProps` (API link)](#TableHeaderProps) defining headers and columns how they should be
+rendered.
+
+### headerCellRender
+
+A function that returns a ReactNode to render the header cell.
+
+| Name            | Type                                               | Default | Description |
+|-----------------|----------------------------------------------------|---------|-------------|
+| `header`\*      | [`TableHeaderProps` (API link)](#TableHeaderProps) |         |             |
+| `sortComponent` | `ReactNode`                                        |         |             |
+
+### headerHeight
+
+| Name           | Type                       | Default | Description                    |
+|----------------|----------------------------|---------|--------------------------------|
+| `headerHeight` | [`Size` (API link)](#Size) | 1fr     | Specify the header cell height |
+
+### data
+
+An array of objects `TableDataProps` representing the data for each row.
+
+### cellRender
+
+A function that returns a ReactNode to render the cell.
+
+| Name       | Type                               | Default | Description |
+|------------|------------------------------------|---------|-------------|
+| `header`\* | `Header`                           |         |             |
+| `rowProps` | [`RowProps` (API link)](#RowProps) |         |             |
+| `value`    | `C`                                |         |             |
+
+### loadingComponent _Optional_
+
+An optional ReactNode rendered when the table is loading.
+
+### noDataComponent _Optional_
+
+A optional ReactNode rendered when there is no data.
+
+### isLoading _Optional_
+
+| Name        | Type      | Default | Description |
+|-------------|-----------|---------|-------------|
+| `isLoading` | `boolean` | false   |             |
+
+### pagination _Optional_
+
+An object defining pagination options.
+
+| Name               | Type       | Default | Description |
+|--------------------|------------|---------|-------------|
+| `initialPage`      | `number`   |         |             |
+| `rowsPerPage`      | `number`   |         |             |
+| `itemsPerPage`     | `number[]` |         |             |
+| `enablePagination` | `boolean`  |         |             |
+
+### paginationRender _Optional_
+
+A function that returns a ReactNode to render the pagination.
+
+```javascript
+(pagination) => <YourPaginationComponent {...pagination} />
+```
+
+| Name                        | Type                            | Default | Description |
+|-----------------------------|---------------------------------|---------|-------------|
+| `currentPage`\*             | `number`                        |         |             |
+| `handleChangeRowsPerPage`\* | `(rowsPerPage: number) => void` |         |             |
+| `handlePageSelectChange`\*  | `(page: number) => void`        |         |             |
+| `dataLength`\*              | `number`                        |         |             |
+| `pageCount`\*               | `number`                        |         |             |
+
+### headerSortComponent _Optional_
+
+A ReactNode to render the sort icon in the header.
+
+```javascript
+headerSortComponent: (onClick, isSortActive, orderDirection) => ReactNode
+```
+
+| Name                   | Type            | Default | Description |
+|------------------------|-----------------|---------|-------------|
+| `onClick`\*            | `() => void`    |         |             |
+| `isColumnSortActive`\* | `boolean`       |         |             |
+| `orderDirection`\*     | `asc` or `desc` |         |             |
+
+### fallbackRender _Optional_
+
+A function that returns a ReactNode to render when an error occurs.
+
+```javascript
+fallbackRender: (rowId, header, lastRow, cell) => ReactNode
+```
+
+| Name        | Type                                           | Default | Description |
+|-------------|------------------------------------------------|---------|-------------|
+| `rowId`\*   | `string`                                       |         |             |
+| `header`\*  | `Header`                                       |         |             |
+| `lastRow`\* | `boolean`                                      |         |             |
+| `cell`      | [`TableCellProps` (API link)](#TableCellProps) |         |             |
+
+## API
+
+### TableDataProps
+
+| Name        | Type                                                | Default   | Description                                                        |
+|-------------|-----------------------------------------------------|-----------|--------------------------------------------------------------------|
+| `rowId`\*   | `string`                                            |           | The id row                                                         |
+| `rowHeight` | `Size`                                              | undefined | Define a row height                                                |
+| `className` | `string`                                            | undefined | Add a css class to the row element                                 |
+| `meta`      | `Record<string, unknown>`                           | undefined | Add any more information you want to use during the cell rendering |
+| `cells`\*   | [`TableCellProps<C>[]` (API link)](#TableCellProps) |           | Cells data, C is your value type                                   |
+
+### TableCellProps
+
+Object representing the data for each cell.
+The `cellData` can be any type you want, a string, an object, an array etc....
+
+| Name         | Type                        | Default | Description |
+|--------------|-----------------------------|---------|-------------|
+| `headerId`\* | `string`                    |         |             |
+| `cellData`   | `string`, `object`, `array` |         |             |
+
+### Size
+
+String value in `px`, `fr`, `%`, `em`, `rem`, `vh` or `vw`
+
+### Order
+
+`asc` or `desc`
+
+### RowProps
+
+| Name         | Type                      | Default   | Description |
+|--------------|---------------------------|-----------|-------------|
+| `rowId`\*    | `string`                  |           |             |
+| `firstRow`\* | `boolean`                 |           |             |
+| `lastRow`\*  | `boolean`                 |           |             |
+| `className`  | `string`                  | undefined |             |
+| `meta`       | `Record<string, unknown>` | undefined |             |
+
+### TableHeaderProps
+
+| Name                   | Type                         | Default   | Description |
+|------------------------|------------------------------|-----------|-------------|
+| `id`\*                 | `string`                     |           |             |
+| `title`                | `string`                     | undefined |             |
+| `propertyKeyToOrder`   | `keyof C`                    | undefined |             |
+| `defaultSortDirection` | [`Order` (API link)](#Order) | undefined |             |
+| `width`                | `Size`                       | undefined |             |
+| `isLastColumn`         | `boolean`                    | undefined |             |
+| `isFirstColumn`        | `boolean`                    | undefined |             |
+
+## Customization
+
+Bespoke-Table is designed to be highly customizable. You can use custom components for column headers, cells, sorting
+and even pagination. For more information on customization, please refer to the documentation.
+
+## Examples
+
+For more detailed examples on how to integrate and use Bespoke-Table in your projects, please visit
+our [storybook](https://s-roueche.github.io/bespoke-table).
 
 ## Thanks
-- [@MidoAhmed/rollup-react-library-starter](https://github.com/MidoAhmed/rollup-react-library-starter) : Big thanks for this starter kit
+
+- [@MidoAhmed/rollup-react-library-starter](https://github.com/MidoAhmed/rollup-react-library-starter) : Big thanks for
+  1this starter kit
 - [IconBuddy](https://iconbuddy.app/) : For the icon used in the storybook
+- [othneildrew/Best-README-Template](https://github.com/othneildrew/Best-README-Template/) : For the inspiration about
+  the README template
+- [ChakraUI](https://github.com/chakra-ui/chakra-ui) : For the inspiration about the README and the CONTRIBUTION
+  template
 
 ## License
-[MIT](LICENSE).
+
+[MIT](LICENSE.txt).
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/s-roueche/bespoke-table.svg?style=for-the-badge
+
+[contributors-url]: https://github.com/s-roueche/bespoke-table/graphs/contributors
+
+[forks-shield]: https://img.shields.io/github/forks/s-roueche/bespoke-table.svg?style=for-the-badge
+
+[forks-url]: https://github.com/s-roueche/bespoke-table/network/members
+
+[stars-shield]: https://img.shields.io/github/stars/s-roueche/bespoke-table.svg?style=for-the-badge
+
+[stars-url]: https://github.com/s-roueche/bespoke-table/stargazers
+
+[issues-shield]: https://img.shields.io/github/issues/s-roueche/bespoke-table.svg?style=for-the-badge
+
+[issues-url]: https://github.com/s-roueche/bespoke-table/issues
+
+[license-shield]: https://img.shields.io/github/license/s-roueche/bespoke-table.svg?style=for-the-badge
+
+[license-url]: https://github.com/s-roueche/bespoke-table/LICENSE.txt
+
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+
+[linkedin-url]: https://www.linkedin.com/in/sebastien-roueche/
+
+[product-screenshot]: images/examples.gif

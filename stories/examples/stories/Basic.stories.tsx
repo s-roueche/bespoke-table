@@ -11,6 +11,7 @@ import {
 const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
   title: 'BespokeTable',
   component: Table,
+  tags: ['autodocs'],
   args: {
     headers: marsRoverTableHeader,
     headerCellRender: (header) => <span>{header.title}</span>,

@@ -7,7 +7,6 @@ export type TableProps<C> = {
   headers: TableHeaderProps<C>[];
   headerHeight?: Size;
   headerCellRender: HeaderCellRender<C>;
-  headerSortComponent?: HeaderSortComponent;
   data: TableDataProps<C>[];
   cellRender: CellRender<C>;
   loadingComponent?: ReactNode;
@@ -15,6 +14,7 @@ export type TableProps<C> = {
   isLoading?: boolean;
   pagination?: PaginationTableConfigProps;
   paginationRender?: PaginationRender;
+  headerSortComponent?: HeaderSortComponent;
   fallbackRender?: FallbackRender<C>;
 };
 
