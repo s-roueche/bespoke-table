@@ -1,9 +1,10 @@
 import { TableHeaderProps } from '../../../../src/type';
 import React from 'react';
 import { MarsRoverPhotoTableDataProps } from '../../Utils/marsRoverPhotoMockUtils';
+import { MarsRoverHeaderDataProps } from '../../Utils/marsRoversMockUtils';
 
 type TableWithBorderCellProps = {
-  header: TableHeaderProps<MarsRoverPhotoTableDataProps>;
+  header: TableHeaderProps<MarsRoverPhotoTableDataProps, MarsRoverHeaderDataProps>;
   cellValue?: MarsRoverPhotoTableDataProps;
 };
 

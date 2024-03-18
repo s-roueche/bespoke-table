@@ -10,8 +10,9 @@ import {
   marsRoverPhotoTableHeaders,
 } from '../Utils/marsRoverPhotoMockUtils';
 import CellSorting from '../Components/Cell/CellSorting';
+import { MarsRoverHeaderDataProps } from '../Utils/marsRoversMockUtils';
 
-const meta: Meta<TableProps<MarsRoverPhotoTableDataProps>> = {
+const meta: Meta<TableProps<MarsRoverPhotoTableDataProps, MarsRoverHeaderDataProps>> = {
   title: 'BespokeTable',
   component: Table,
   args: {
@@ -38,5 +39,5 @@ const meta: Meta<TableProps<MarsRoverPhotoTableDataProps>> = {
 };
 
 export default meta;
-type Story = StoryObj<TableProps<MarsRoverPhotoTableDataProps>>;
+type Story = StoryObj<TableProps<MarsRoverPhotoTableDataProps, MarsRoverHeaderDataProps>>;
 export const Pagination: Story = {};

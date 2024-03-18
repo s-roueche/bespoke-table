@@ -1,9 +1,9 @@
 import React from 'react';
 import { TableHeaderProps } from '../../../../src/type';
-import { MarsRoverTableDataProps } from '../../Utils/marsRoversMockUtils';
+import { MarsRoverHeaderDataProps, MarsRoverTableDataProps } from '../../Utils/marsRoversMockUtils';
 
 export type TableWithBorderHeaderProps = {
-  header: TableHeaderProps<MarsRoverTableDataProps>;
+  header: TableHeaderProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>;
 };
 
 const HeaderDesign = ({ header }: TableWithBorderHeaderProps) => {

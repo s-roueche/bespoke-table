@@ -1,9 +1,12 @@
 import React from 'react';
 import { TableHeaderProps } from '../../../../../src/type';
-import { MarsRoverTableDataProps } from '../../../Utils/marsRoversMockUtils';
+import {
+  MarsRoverHeaderDataProps,
+  MarsRoverTableDataProps,
+} from '../../../Utils/marsRoversMockUtils';
 
 export type TableHeaderWithSortingProps = {
-  header: TableHeaderProps<MarsRoverTableDataProps>;
+  header: TableHeaderProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>;
   sortComponent?: React.ReactNode;
 };
 

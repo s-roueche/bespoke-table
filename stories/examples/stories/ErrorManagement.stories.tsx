@@ -8,11 +8,12 @@ import TableWithFullBorderCell from '../Components/Cell/TableWithFullBorderCell'
 import CellErrorLayout from '../Components/Cell/CellErrorLayout';
 import {
   buildMarsRoverTableData,
+  MarsRoverHeaderDataProps,
   MarsRoverTableDataProps,
   marsRoverTableHeader,
 } from '../Utils/marsRoversMockUtils';
 
-const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
+const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> = {
   title: 'BespokeTable/Error Management',
   component: Table,
   args: {
@@ -31,7 +32,7 @@ const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
 };
 
 export default meta;
-type Story = StoryObj<TableProps<MarsRoverTableDataProps>>;
+type Story = StoryObj<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>>;
 export const ErrorBoundaryDefaultRendering: Story = {};
 export const ErrorBoundaryCustomRendering: Story = {
   args: {

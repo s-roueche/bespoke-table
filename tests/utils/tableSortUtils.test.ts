@@ -12,7 +12,7 @@ import {
 import { generateBasicMockData } from '../mock/generateBasicMockData';
 
 describe('getDefaultColumnSort', () => {
-  const headers: TableHeaderProps<String>[] = [
+  const headers: TableHeaderProps<String, string>[] = [
     {
       id: 'test',
       title: 'test',
