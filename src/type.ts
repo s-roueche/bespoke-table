@@ -3,24 +3,24 @@ import { Component, FunctionComponent, ReactElement, ReactNode } from 'react';
 export type Order = 'asc' | 'desc';
 export type Size = `${string}${'px' | 'fr' | '%' | 'em' | 'rem' | 'vh' | 'vw'}`;
 
-export type TableProps<C> = {
-  headers: TableHeaderProps<C>[];
+export type TableProps<C, H> = {
+  headers: TableHeaderProps<C, H>[];
   headerHeight?: Size;
-  headerCellRender: HeaderCellRender<C>;
+  headerCellRender: HeaderCellRender<C, H>;
   data: TableDataProps<C>[];
-  cellRender: CellRender<C>;
+  cellRender: CellRender<C, H>;
   loadingComponent?: ReactNode;
   noDataComponent?: ReactNode;
   isLoading?: boolean;
   pagination?: PaginationTableConfigProps;
   paginationRender?: PaginationRender;
   headerSortComponent?: HeaderSortComponent;
-  fallbackRender?: FallbackRender<C>;
+  fallbackRender?: FallbackRender<C, H>;
 };
 
-export type TableHeaderProps<C> = {
+export type TableHeaderProps<C, H> = {
   id: string;
-  title?: string;
+  title?: H;
   propertyKeyToOrder?: keyof C;
   defaultSortDirection?: Order;
   width?: Size;
@@ -41,8 +41,8 @@ export type TableCellProps<C> = {
   cellData?: C;
 };
 
-export type HeaderCellRender<C> = (
-  header: TableHeaderProps<C>,
+export type HeaderCellRender<C, H> = (
+  header: TableHeaderProps<C, H>,
   sortComponent?: ReactNode,
 ) => ReactNode;
 
@@ -60,8 +60,8 @@ export type RowProps = {
   meta?: Record<string, unknown>;
 };
 
-export type CellRender<C> = (
-  header: TableHeaderProps<C>,
+export type CellRender<C, H> = (
+  header: TableHeaderProps<C, H>,
   rowProps: RowProps,
   value?: C,
 ) => ReactNode;
@@ -92,9 +92,9 @@ export type PaginationRenderProps = UsePaginationTableProps & {
   pageCount: number;
 };
 
-export type FallbackRender<C> = (
+export type FallbackRender<C, H> = (
   rowId: string,
-  header: TableHeaderProps<C>,
+  header: TableHeaderProps<C, H>,
   lastRow: boolean,
   cell?: TableCellProps<C>,
 ) => ReactElement<unknown, string | FunctionComponent | typeof Component> | null;

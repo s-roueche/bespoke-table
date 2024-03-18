@@ -9,7 +9,7 @@ interface UseTableSortReturn<C> {
   handleSort: HandlerSort<C>;
 }
 
-export function useTableSort<C>(headers: TableHeaderProps<C>[]): UseTableSortReturn<C> {
+export function useTableSort<C, H>(headers: TableHeaderProps<C, H>[]): UseTableSortReturn<C> {
   const defaultColumnSort = getDefaultColumnSort(headers);
 
   const [order, setOrder] = useState<Order>(

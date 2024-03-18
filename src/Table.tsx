@@ -9,7 +9,7 @@ import { getDataSorted } from './utils/tableSortUtils';
 import { generateGridTemplateColumns, generateGridTemplateRows } from './utils/tableUtils';
 import Pagination from './Pagination/Pagination';
 
-export default function Table<C>({
+export default function Table<C, H>({
   data,
   headers,
   cellRender,
@@ -22,8 +22,8 @@ export default function Table<C>({
   headerSortComponent,
   fallbackRender,
   headerHeight,
-}: TableProps<C>) {
-  const { order, orderByColumnId, propertyKeyToOrder, handleSort } = useTableSort<C>(headers);
+}: TableProps<C, H>) {
+  const { order, orderByColumnId, propertyKeyToOrder, handleSort } = useTableSort<C, H>(headers);
   const paginationConfig = usePaginationTable(pagination);
   const isDataAvailable = isLoading === false && data.length !== 0;
   const dataSorted = getDataSorted(orderByColumnId, propertyKeyToOrder, data, order);
