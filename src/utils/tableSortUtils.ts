@@ -52,7 +52,7 @@ function getCellValue<C>(rows: TableDataProps<C>, propertyKey: keyof C, columnId
   const cell = rows.cells.find((cell) => cell.headerId === columnId);
   if (cell && cell.cellData && cell.cellData[propertyKey]) {
     if (isFunction(cell.cellData[propertyKey])) {
-      return (cell.cellData[propertyKey] as Function)();
+      return (cell.cellData[propertyKey] as any)();
     }
     return cell.cellData[propertyKey];
   }

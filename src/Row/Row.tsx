@@ -2,7 +2,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { CellRender, FallbackRender, RowProps, TableDataProps, TableHeaderProps } from '../type';
 import React from 'react';
 
-export default function Row<C>({
+export default function Row<C, H>({
   row,
   headers,
   cellRender,
@@ -11,11 +11,11 @@ export default function Row<C>({
   fallbackRender,
 }: {
   row: TableDataProps<C>;
-  headers: TableHeaderProps<C>[];
-  cellRender: CellRender<C>;
+  headers: TableHeaderProps<C, H>[];
+  cellRender: CellRender<C, H>;
   firstRow: boolean;
   lastRow: boolean;
-  fallbackRender?: FallbackRender<C>;
+  fallbackRender?: FallbackRender<C, H>;
 }) {
   const { rowId, cells, className, meta } = row;
   return (

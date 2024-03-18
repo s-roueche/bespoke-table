@@ -4,9 +4,13 @@ import React from 'react';
 import { TableProps } from '../../../src/type';
 import TableWithFullBorderHeader from '../Components/Header/TableWithFullBorderHeader';
 import Container from '../Components/Container';
-import { MarsRoverTableDataProps, marsRoverTableHeader } from '../Utils/marsRoversMockUtils';
+import {
+  MarsRoverHeaderDataProps,
+  MarsRoverTableDataProps,
+  marsRoverTableHeader,
+} from '../Utils/marsRoversMockUtils';
 
-const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
+const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> = {
   title: 'BespokeTable/Data Management',
   component: Table,
   args: {
@@ -19,7 +23,7 @@ const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
 };
 
 export default meta;
-type Story = StoryObj<TableProps<MarsRoverTableDataProps>>;
+type Story = StoryObj<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>>;
 export const LoadingData: Story = {
   args: {
     isLoading: true,

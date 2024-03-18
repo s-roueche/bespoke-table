@@ -1,12 +1,12 @@
 import React from 'react';
 import { TableHeaderProps } from '../../../../src/type';
-import { MarsRoverTableDataProps } from '../../Utils/marsRoversMockUtils';
+import { MarsRoverHeaderDataProps, MarsRoverTableDataProps } from '../../Utils/marsRoversMockUtils';
 import { MarsRoverPhotoTableDataProps } from '../../Utils/marsRoverPhotoMockUtils';
 
 export type TableWithBorderHeaderProps = {
   header:
-    | TableHeaderProps<MarsRoverTableDataProps>
-    | TableHeaderProps<MarsRoverPhotoTableDataProps>;
+    | TableHeaderProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>
+    | TableHeaderProps<MarsRoverPhotoTableDataProps, MarsRoverHeaderDataProps>;
 };
 
 const TableWithFullBorderHeader = ({ header }: TableWithBorderHeaderProps) => {

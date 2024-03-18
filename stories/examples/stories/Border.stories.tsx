@@ -8,11 +8,12 @@ import TableWithFullBorderHeader from '../Components/Header/TableWithFullBorderH
 import TableWithFullBorderCell from '../Components/Cell/TableWithFullBorderCell';
 import {
   buildMarsRoverTableData,
+  MarsRoverHeaderDataProps,
   MarsRoverTableDataProps,
   marsRoverTableHeader,
 } from '../Utils/marsRoversMockUtils';
 
-const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
+const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> = {
   title: 'BespokeTable/Border',
   component: Table,
   args: {
@@ -24,7 +25,7 @@ const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
 };
 
 export default meta;
-type Story = StoryObj<TableProps<MarsRoverTableDataProps>>;
+type Story = StoryObj<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>>;
 export const TableWithBorder: Story = {
   args: {
     headerCellRender: (header) => <TableWithBorderHeader header={header} />,

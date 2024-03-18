@@ -1,5 +1,5 @@
 import { TableDataProps, TableHeaderProps } from '../../../src/type';
-import { Camera, MarsRoverApiResponseProps } from './marsRoversMockUtils';
+import { Camera, MarsRoverApiResponseProps, MarsRoverHeaderDataProps } from './marsRoversMockUtils';
 import { formatDate, toDate } from './dateFormatUtils';
 
 export type MarsRoverPhotoApiResponseProps = {
@@ -15,7 +15,10 @@ export type MarsRoverPhotoTableDataProps = {
   value: string | number;
   sortValue?: string | number;
 };
-export const marsRoverPhotoTableHeaders: TableHeaderProps<MarsRoverPhotoTableDataProps>[] = [
+export const marsRoverPhotoTableHeaders: TableHeaderProps<
+  MarsRoverPhotoTableDataProps,
+  MarsRoverHeaderDataProps
+>[] = [
   {
     id: 'col-id',
     title: 'Id',

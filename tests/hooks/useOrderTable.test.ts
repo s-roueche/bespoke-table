@@ -1,9 +1,10 @@
 import { useTableSort } from '../../src/hooks/useOrderTable';
 import { TableHeaderProps } from '../../src/type';
 import { act, renderHook, waitFor } from '@testing-library/react';
+import { MarsRoverHeaderDataProps } from '../../stories/examples/Utils/marsRoversMockUtils';
 
 describe('useOrderTable', () => {
-  const headers: TableHeaderProps<String>[] = [
+  const headers: TableHeaderProps<String, MarsRoverHeaderDataProps>[] = [
     {
       id: 'column-id-1',
       title: 'Column 1',

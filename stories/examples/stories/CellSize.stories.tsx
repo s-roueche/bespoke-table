@@ -4,44 +4,49 @@ import { TableHeaderProps, TableProps } from '../../../src/type';
 import TableWithFullBorderHeader from '../Components/Header/TableWithFullBorderHeader';
 import TableWithFullBorderCell from '../Components/Cell/TableWithFullBorderCell';
 import React from 'react';
-import { buildMarsRoverTableData, MarsRoverTableDataProps } from '../Utils/marsRoversMockUtils';
+import {
+  buildMarsRoverTableData,
+  MarsRoverHeaderDataProps,
+  MarsRoverTableDataProps,
+} from '../Utils/marsRoversMockUtils';
 
-const marsRoverTableHeader: TableHeaderProps<MarsRoverTableDataProps>[] = [
-  {
-    id: 'col-id',
-    title: 'Id',
-    isFirstColumn: true,
-    width: '50px',
-  },
-  {
-    id: 'col-name',
-    title: 'Name',
-    width: '2fr', // Change this value to see the difference
-  },
-  {
-    id: 'col-launch-date',
-    title: 'Launch date',
-  },
-  {
-    id: 'col-landing-date',
-    title: 'Landing date',
-  },
-  {
-    id: 'col-status',
-    title: 'Status',
-  },
-  {
-    id: 'col-last-activity-date',
-    title: 'Last activity',
-  },
-  {
-    id: 'col-photos-count',
-    title: 'Photos',
-    isLastColumn: true,
-  },
-];
+const marsRoverTableHeader: TableHeaderProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>[] =
+  [
+    {
+      id: 'col-id',
+      title: 'Id',
+      isFirstColumn: true,
+      width: '50px',
+    },
+    {
+      id: 'col-name',
+      title: 'Name',
+      width: '2fr', // Change this value to see the difference
+    },
+    {
+      id: 'col-launch-date',
+      title: 'Launch date',
+    },
+    {
+      id: 'col-landing-date',
+      title: 'Landing date',
+    },
+    {
+      id: 'col-status',
+      title: 'Status',
+    },
+    {
+      id: 'col-last-activity-date',
+      title: 'Last activity',
+    },
+    {
+      id: 'col-photos-count',
+      title: 'Photos',
+      isLastColumn: true,
+    },
+  ];
 
-const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
+const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> = {
   title: 'BespokeTable/Cell size',
   component: Table,
   args: {
@@ -53,7 +58,7 @@ const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
 };
 
 export default meta;
-type Story = StoryObj<TableProps<MarsRoverTableDataProps>>;
+type Story = StoryObj<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>>;
 export const ColumnCustomWidth: Story = {
   args: { headers: marsRoverTableHeader },
   render: ({ data, ...args }, { loaded: { roverResponse } }) => (

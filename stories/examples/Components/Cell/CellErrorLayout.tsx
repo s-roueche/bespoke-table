@@ -1,6 +1,6 @@
 import React from 'react';
 import { TableHeaderProps } from '../../../../src/type';
-import { MarsRoverTableDataProps } from '../../Utils/marsRoversMockUtils';
+import { MarsRoverHeaderDataProps, MarsRoverTableDataProps } from '../../Utils/marsRoversMockUtils';
 
 const CellErrorLayout = ({
   lastRow,
@@ -8,7 +8,7 @@ const CellErrorLayout = ({
   cellValue,
 }: {
   lastRow: boolean;
-  header: TableHeaderProps<MarsRoverTableDataProps>;
+  header: TableHeaderProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>;
   cellValue?: string;
 }) => {
   const borderStyle = '1px solid black';

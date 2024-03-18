@@ -53,7 +53,12 @@ export type MarsRoverTableDataProps = {
   sortValue?: string | number;
 };
 
-export const marsRoverTableHeader: TableHeaderProps<MarsRoverTableDataProps>[] = [
+export type MarsRoverHeaderDataProps = string;
+
+export const marsRoverTableHeader: TableHeaderProps<
+  MarsRoverTableDataProps,
+  MarsRoverHeaderDataProps
+>[] = [
   {
     id: 'col-id',
     title: 'Id',

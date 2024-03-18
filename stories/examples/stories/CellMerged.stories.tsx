@@ -8,11 +8,12 @@ import TableWithFullBorderHeader from '../Components/Header/TableWithFullBorderH
 import TableWithCellsMerged from '../Components/Cell/TableWithCellsMerged';
 import {
   buildMarsRoverTableData,
+  MarsRoverHeaderDataProps,
   MarsRoverTableDataProps,
   marsRoverTableHeader,
 } from '../Utils/marsRoversMockUtils';
 
-const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
+const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> = {
   title: 'BespokeTable/Cells Merged',
   component: Table,
   args: {
@@ -24,7 +25,7 @@ const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
 };
 
 export default meta;
-type Story = StoryObj<TableProps<MarsRoverTableDataProps>>;
+type Story = StoryObj<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>>;
 export const TableWithColumnsMerged: Story = {
   args: {
     headerCellRender: (header) => <TableWithColumnsMergedHeader header={header} />,

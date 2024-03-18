@@ -4,11 +4,12 @@ import React from 'react';
 import { TableProps } from '../../../src/type';
 import {
   buildMarsRoverTableData,
+  MarsRoverHeaderDataProps,
   MarsRoverTableDataProps,
   marsRoverTableHeader,
 } from '../Utils/marsRoversMockUtils';
 
-const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
+const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> = {
   title: 'BespokeTable',
   component: Table,
   tags: ['autodocs'],
@@ -23,5 +24,5 @@ const meta: Meta<TableProps<MarsRoverTableDataProps>> = {
 };
 
 export default meta;
-type Story = StoryObj<TableProps<MarsRoverTableDataProps>>;
+type Story = StoryObj<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>>;
 export const DefaultTable: Story = {};
