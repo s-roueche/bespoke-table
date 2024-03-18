@@ -1,4 +1,3 @@
-import React from 'react';
 import { PaginationRender, PaginationRenderProps, UsePaginationTableProps } from '../type';
 
 type PaginationProps = {
@@ -7,7 +6,7 @@ type PaginationProps = {
   paginationConfig: UsePaginationTableProps;
 };
 
-export default function Pagination<C>({
+export default function Pagination({
   dataLength,
   paginationRender,
   paginationConfig,

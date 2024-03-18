@@ -12,7 +12,7 @@ export function getNextOrderDirection(
   return 'asc';
 }
 
-export function getDefaultColumnSort<C>(headers: TableHeaderProps<C>[]) {
+export function getDefaultColumnSort<C, H>(headers: TableHeaderProps<C, H>[]) {
   return headers.find((header) => header.defaultSortDirection !== undefined);
 }
 
@@ -52,7 +52,7 @@ function getCellValue<C>(rows: TableDataProps<C>, propertyKey: keyof C, columnId
   const cell = rows.cells.find((cell) => cell.headerId === columnId);
   if (cell && cell.cellData && cell.cellData[propertyKey]) {
     if (isFunction(cell.cellData[propertyKey])) {
-      return (cell.cellData[propertyKey] as any)();
+      return (cell.cellData[propertyKey] as Function)();
     }
     return cell.cellData[propertyKey];
   }

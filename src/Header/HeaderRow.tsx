@@ -9,7 +9,7 @@ import {
 } from '../type';
 import { getNextOrderDirection } from '../utils/tableSortUtils';
 
-export default function HeaderRow<C>({
+export default function HeaderRow<C, H>({
   headers,
   headerCellRender,
   handleSort,
@@ -17,8 +17,8 @@ export default function HeaderRow<C>({
   orderDirection,
   headerSortComponent,
 }: {
-  headers: TableHeaderProps<C>[];
-  headerCellRender: HeaderCellRender<C>;
+  headers: TableHeaderProps<C, H>[];
+  headerCellRender: HeaderCellRender<C, H>;
   handleSort: HandlerSort<C>;
   activeColumnIdSorted?: string;
   orderDirection: Order;
