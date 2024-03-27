@@ -1,4 +1,4 @@
-import Table from '../../../src/Table';
+import Table from '../../../src/index';
 import { Meta, StoryObj } from '@storybook/react';
 import { TableHeaderProps, TableProps } from '../../../src/type';
 import TableWithFullBorderHeader from '../Components/Header/TableWithFullBorderHeader';

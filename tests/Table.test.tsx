@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
-import Table from '../src/Table';
+import Table from '../src/index';
 import {
   buildMarsRoverTableDataTest,
   marsRoverTableHeaderTestMock,
