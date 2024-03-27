@@ -21,7 +21,9 @@ export default function Table<C, H>({
   noDataComponent,
   headerSortComponent,
   fallbackRender,
+
   headerHeight,
+  containerClassName,
 }: TableProps<C, H>) {
   const { order, orderByColumnId, propertyKeyToOrder, handleSort } = useTableSort<C, H>(headers);
   const paginationConfig = usePaginationTable(pagination);
@@ -30,7 +32,7 @@ export default function Table<C, H>({
   const dataTable = getDataPaginated(dataSorted, paginationConfig);
 
   return (
-    <div>
+    <div className={containerClassName}>
       <div
         style={{
           display: 'grid',

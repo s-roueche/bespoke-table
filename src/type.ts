@@ -16,6 +16,7 @@ export type TableProps<C, H> = {
   paginationRender?: PaginationRender;
   headerSortComponent?: HeaderSortComponent;
   fallbackRender?: FallbackRender<C, H>;
+  containerClassName?: string;
 };
 
 export type TableHeaderProps<C, H> = {
