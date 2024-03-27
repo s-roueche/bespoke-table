@@ -11,7 +11,7 @@ import pkg from "./package.json" assert { type: 'json' };
 
 export default [
 	{
-		input: 'src/index.ts',
+		input: 'src/index.tsx',
 		output: [
 			{
 				file: pkg.main,
@@ -30,12 +30,12 @@ export default [
 			resolve(),
 			typescript({ tsconfig: "./tsconfig.json", include: [ 'src/**/*.tsx', 'src/**/*.ts'] }),
 			terser()
-		]
+		],
+		external: ["react", "react-dom"],
 	},
 	{
-		input: "dist/esm/types/index.d.ts",
+		input: "src/index.tsx",
 		output: [{ file: "dist/index.d.ts", format: "esm" }],
 		plugins: [dts()],
-		external: [/\.(css|less|scss)$/],
 	},
 ];
