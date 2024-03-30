@@ -63,7 +63,7 @@
  */
 
 /**
- * mock-xmlhttprequest v8.2.0
+ * mock-xmlhttprequest v8.3.0
  * (c) 2023 Bertrand Guay-Paquet
- * @license ISC
+ * @license MIT
  */
