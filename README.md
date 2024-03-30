@@ -12,7 +12,7 @@
     <img src="images/bespoke-table.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Bespoke-BespokeTable</h3>
+<h3 align="center">Bespoke-Table</h3>
   <p align="center">
     A react table generator compatible with all design systems, just stay focus on your UX/UI.
     <br />
@@ -33,14 +33,18 @@
 
 [![Bespoke-table Shot][product-screenshot]](https://example.com)
 
-# Bespoke-BespokeTable
+# Bespoke-Table
 
-Bespoke-BespokeTable is a flexible and extensible React library for generate tables. Designed to seamlessly integrate with any
+BespokeTable is a flexible and extensible React library base on grid css for generate tables. Designed to
+seamlessly integrate with any
 design system, it allows developers to focus on styling and user experience while efficiently managing the table's
 structure and functionality.
 
 Designed with flexibility in mind, this component is perfect for developers who want full control over their table's
 appearance and behavior without the bloat of heavier solutions.
+
+Be careful, it's not recommended to use Bespoke-Table for SEO purpose. The table generated is
+base on div and css grid. That give you a lot of flexibility but it's not SEO friendly.
 
 ## Features
 
@@ -52,110 +56,114 @@ appearance and behavior without the bloat of heavier solutions.
 
 ## Installation
 
-You can install Bespoke-BespokeTable using npm or yarn:
+You can install Bespoke-Table using npm or yarn:
 
 ```bash
-npm install Bespoke-BespokeTable
-or 
-yarn add Bespoke-BespokeTable
+npm i @sroueche/bespoketable
+```
+
+or
+
+```bash
+yarn add @sroueche/bespoketable
 ```
 
 ## Usage
 
-To start using Bespoke-BespokeTable, this is a simple example of how to use it :
+To start using Bespoke-Table, this is a simple example of how to use it :
 
 ```tsx
 import React from 'react';
-import {BespokeTable, TableHeaderProps} from 'bespoke-table';
+import BespokeTable, { TableHeaderProps } from '@sroueche/bespoketable';
 
 const MyTable = () => {
-    const data = [{
-        rowId: 'row-1',
-        cells: [
-            {
-                headerId: 'col-id',
-                cellData: {
-                    value: 'rover-curiosity',
-                },
-            },
-            {
-                headerId: 'col-name',
-                cellData: {
-                    value: 'Curiosity',
-                },
-            },
-            {
-                headerId: 'col-status',
-                cellData: {
-                    value: 'active',
-                },
-            },
-            {
-                headerId: 'col-photos-count',
-                cellData: {
-                    value: '693,552',
-                },
-            },
-        ],
-    }, {
-        rowId: 'row-2',
-        cells: [
-            {
-                headerId: 'col-id',
-                cellData: {
-                    value: 'rover-perseverance',
-                },
-            },
-            {
-                headerId: 'col-name',
-                cellData: {
-                    value: 'Perseverance',
-                },
-            },
-            {
-                headerId: 'col-status',
-                cellData: {
-                    value: 'active',
-                },
-            },
-            {
-                headerId: 'col-photos-count',
-                cellData: {
-                    value: '194,374',
-                },
-            },
-        ],
-    }];
+  const data = [{
+    rowId: 'row-1',
+    cells: [
+      {
+        headerId: 'col-id',
+        cellData: {
+          value: 'rover-curiosity',
+        },
+      },
+      {
+        headerId: 'col-name',
+        cellData: {
+          value: 'Curiosity',
+        },
+      },
+      {
+        headerId: 'col-status',
+        cellData: {
+          value: 'active',
+        },
+      },
+      {
+        headerId: 'col-photos-count',
+        cellData: {
+          value: '693,552',
+        },
+      },
+    ],
+  }, {
+    rowId: 'row-2',
+    cells: [
+      {
+        headerId: 'col-id',
+        cellData: {
+          value: 'rover-perseverance',
+        },
+      },
+      {
+        headerId: 'col-name',
+        cellData: {
+          value: 'Perseverance',
+        },
+      },
+      {
+        headerId: 'col-status',
+        cellData: {
+          value: 'active',
+        },
+      },
+      {
+        headerId: 'col-photos-count',
+        cellData: {
+          value: '194,374',
+        },
+      },
+    ],
+  }];
 
-    const headers: TableHeaderProps<string>[] = [
-        {
-            id: 'col-id',
-            title: 'Id',
-            isFirstColumn: true,
-            width: '50px',
-        },
-        {
-            id: 'col-name',
-            title: 'Name',
-        },
-        {
-            id: 'col-status',
-            title: 'Status',
-        },
-        {
-            id: 'col-photos-count',
-            title: 'Photos',
-            isLastColumn: true,
-        },
-    ];
+  const headers: TableHeaderProps<string>[] = [
+    {
+      id: 'col-id',
+      title: 'Id',
+      isFirstColumn: true,
+      width: '50px',
+    },
+    {
+      id: 'col-name',
+      title: 'Name',
+    },
+    {
+      id: 'col-status',
+      title: 'Status',
+    },
+    {
+      id: 'col-photos-count',
+      title: 'Photos',
+      isLastColumn: true,
+    },
+  ];
 
-    return (
-        <BespokeTable headers={headers}
-               headerCellRender={(header) => <span>{header.title}</span>}
-               data={data}
-               cellRender={(header, rowProps, cell) => <span>{cell?.value}</span>}
-        />
-    );
+  return (
+    <BespokeTable headers={headers}
+                  headerCellRender={(header) => <span>{header.title}</span>}
+                  data={data}
+                  cellRender={(header, rowProps, cell) => <span>{cell?.value}</span>}
+    />
+  );
 }
 
 export default MyTable;
@@ -267,6 +275,9 @@ fallbackRender: (rowId, header, lastRow, cell) => ReactNode
 | `lastRow`\* | `boolean`                                      |         |             |
 | `cell`      | [`TableCellProps` (API link)](#TableCellProps) |         |             |
 
+### containerClassName _Optional_
+A string to add a css class to the container element.
+
 ## API
 
 ### TableDataProps
@@ -321,12 +332,12 @@ String value in `px`, `fr`, `%`, `em`, `rem`, `vh` or `vw`
 
 ## Customization
 
-Bespoke-BespokeTable is designed to be highly customizable. You can use custom components for column headers, cells, sorting
+Bespoke-Table is designed to be highly customizable. You can use custom components for column headers, cells, sorting
 and even pagination. For more information on customization, please refer to the documentation.
 
 ## Examples
 
-For more detailed examples on how to integrate and use Bespoke-BespokeTable in your projects, please visit
+For more detailed examples on how to integrate and use Bespoke-Table in your projects, please visit
 our [storybook](https://s-roueche.github.io/bespoke-table).
 
 ## Thanks
