@@ -1,6 +1,6 @@
 {
   "name": "@sroueche/bespoketable",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A lightweight and highly customizable table component for React. Designed with flexibility in mind, this component is perfect for developers who want full control over their table's appearance and behavior without the bloat of heavier solutions.",
   "main": "dist/cjs/bundle.js",
   "module": "dist/esm/bundle.js",

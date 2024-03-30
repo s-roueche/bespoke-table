@@ -21,7 +21,6 @@ export default function BespokeTable<C, H>({
   noDataComponent,
   headerSortComponent,
   fallbackRender,
-
   headerHeight,
   containerClassName,
 }: TableProps<C, H>) {
