@@ -3,13 +3,13 @@ import {
   getDefaultColumnSort,
   getNextOrderDirection,
 } from '../../src/utils/tableSortUtils';
-import { TableHeaderProps } from '../../src/type';
 import {
   buildMarsRoverTableDataTest,
   MarsRoverTableDataTestProps,
   roversDataTestMock,
 } from '../mock/testMock';
 import { generateBasicMockData } from '../mock/generateBasicMockData';
+import { TableHeaderProps } from '../../src';
 
 describe('getDefaultColumnSort', () => {
   const headers: TableHeaderProps<String, string>[] = [

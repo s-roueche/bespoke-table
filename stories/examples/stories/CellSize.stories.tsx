@@ -1,6 +1,5 @@
-import Table from '../../../src/index';
+import BespokeTable, { TableHeaderProps, TableProps } from '../../../src/index';
 import { Meta, StoryObj } from '@storybook/react';
-import { TableHeaderProps, TableProps } from '../../../src/type';
 import TableWithFullBorderHeader from '../Components/Header/TableWithFullBorderHeader';
 import TableWithFullBorderCell from '../Components/Cell/TableWithFullBorderCell';
 import React from 'react';
@@ -48,7 +47,7 @@ const marsRoverTableHeader: TableHeaderProps<MarsRoverTableDataProps, MarsRoverH
 
 const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> = {
   title: 'BespokeTable/Cell size',
-  component: Table,
+  component: BespokeTable,
   args: {
     headerCellRender: (header) => <TableWithFullBorderHeader header={header} />,
     cellRender: (header, rowProps, value) => (
@@ -62,12 +61,12 @@ type Story = StoryObj<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataPro
 export const ColumnCustomWidth: Story = {
   args: { headers: marsRoverTableHeader },
   render: ({ data, ...args }, { loaded: { roverResponse } }) => (
-    <Table data={buildMarsRoverTableData(roverResponse.rovers)} {...args} />
+    <BespokeTable data={buildMarsRoverTableData(roverResponse.rovers)} {...args} />
   ),
 };
 export const ColumnCustomHeight: Story = {
   args: { headers: marsRoverTableHeader },
   render: ({ data, ...args }, { loaded: { roverResponse } }) => (
-    <Table data={buildMarsRoverTableData(roverResponse.rovers, '30px')} {...args} />
+    <BespokeTable data={buildMarsRoverTableData(roverResponse.rovers, '30px')} {...args} />
   ),
 };

@@ -1,6 +1,6 @@
-import { RowProps, TableHeaderProps } from '../../../../src/type';
 import React from 'react';
 import { MarsRoverHeaderDataProps, MarsRoverTableDataProps } from '../../Utils/marsRoversMockUtils';
+import { RowProps, TableHeaderProps } from '../../../../src';
 
 type TableWithBorderCellProps = {
   header: TableHeaderProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>;

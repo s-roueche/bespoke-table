@@ -1,6 +1,6 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import { CellRender, FallbackRender, RowProps, TableDataProps, TableHeaderProps } from '../type';
 import React from 'react';
+import { CellRender, FallbackRender, RowProps, TableDataProps, TableHeaderProps } from '../index';
 
 export default function Row<C, H>({
   row,

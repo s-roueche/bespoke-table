@@ -1,79 +1,90 @@
-import React from 'react';
-import HeaderRow from './Header/HeaderRow';
-import Row from './Row/Row';
-import { useTableSort } from './hooks/useOrderTable';
-import { usePaginationTable } from './hooks/usePaginationTable';
-import { TableProps } from './type';
-import { getDataPaginated } from './utils/tablePaginationUtils';
-import { getDataSorted } from './utils/tableSortUtils';
-import { generateGridTemplateColumns, generateGridTemplateRows } from './utils/tableUtils';
-import Pagination from './Pagination/Pagination';
+import { Component, FunctionComponent, ReactElement, ReactNode } from 'react';
+import BespokeTable from './BespokeTable';
 
-export default function Table<C, H>({
-  data,
-  headers,
-  cellRender,
-  headerCellRender,
-  isLoading = false,
-  pagination,
-  paginationRender,
-  loadingComponent,
-  noDataComponent,
-  headerSortComponent,
-  fallbackRender,
+export type Order = 'asc' | 'desc';
+export type Size = `${string}${'px' | 'fr' | '%' | 'em' | 'rem' | 'vh' | 'vw'}`;
+export type TableProps<C, H> = {
+  headers: TableHeaderProps<C, H>[];
+  headerHeight?: Size;
+  headerCellRender: HeaderCellRender<C, H>;
+  data: TableDataProps<C>[];
+  cellRender: CellRender<C, H>;
+  loadingComponent?: ReactNode;
+  noDataComponent?: ReactNode;
+  isLoading?: boolean;
+  pagination?: PaginationTableConfigProps;
+  paginationRender?: PaginationRender;
+  headerSortComponent?: HeaderSortComponent;
+  fallbackRender?: FallbackRender<C, H>;
+  containerClassName?: string;
+};
+export type TableHeaderProps<C, H> = {
+  id: string;
+  title?: H;
+  propertyKeyToOrder?: keyof C;
+  defaultSortDirection?: Order;
+  width?: Size;
+  isLastColumn?: boolean;
+  isFirstColumn?: boolean;
+};
+export type TableDataProps<C> = {
+  rowId: string;
+  rowHeight?: Size;
+  className?: string;
+  meta?: Record<string, unknown>;
+  cells: TableCellProps<C>[];
+};
+export type TableCellProps<C> = {
+  headerId: string;
+  cellData?: C;
+};
+export type HeaderCellRender<C, H> = (
+  header: TableHeaderProps<C, H>,
+  sortComponent?: ReactNode,
+) => ReactNode;
+export type HeaderSortComponent = (
+  onclick: () => void,
+  isColumnSortActive: boolean,
+  orderDirection: Order,
+) => ReactNode;
+export type RowProps = {
+  rowId: string;
+  firstRow: boolean;
+  lastRow: boolean;
+  className?: string;
+  meta?: Record<string, unknown>;
+};
+export type CellRender<C, H> = (
+  header: TableHeaderProps<C, H>,
+  rowProps: RowProps,
+  value?: C,
+) => ReactNode;
+export type HandlerSort<C> = (
+  columnId: string,
+  propertyKeyToOrder: keyof C,
+  orderDirection: Order,
+) => void;
+export type PaginationTableConfigProps = {
+  initialPage?: number;
+  rowsPerPage?: number;
+  itemsPerPage?: number[];
+  enablePagination?: boolean;
+};
+export type PaginationRender = (pagination: PaginationRenderProps) => ReactNode;
+export type UsePaginationTableProps = {
+  currentPage: number;
+  handleChangeRowsPerPage: (rowsPerPage: number) => void;
+  handlePageSelectChange: (page: number) => void;
+} & Required<PaginationTableConfigProps>;
+export type PaginationRenderProps = UsePaginationTableProps & {
+  dataLength: number;
+  pageCount: number;
+};
+export type FallbackRender<C, H> = (
+  rowId: string,
+  header: TableHeaderProps<C, H>,
+  lastRow: boolean,
+  cell?: TableCellProps<C>,
+) => ReactElement<unknown, string | FunctionComponent | typeof Component> | null;
 
-  headerHeight,
-  containerClassName,
-}: TableProps<C, H>) {
-  const { order, orderByColumnId, propertyKeyToOrder, handleSort } = useTableSort<C, H>(headers);
-  const paginationConfig = usePaginationTable(pagination);
-  const isDataAvailable = isLoading === false && data.length !== 0;
-  const dataSorted = getDataSorted(orderByColumnId, propertyKeyToOrder, data, order);
-  const dataTable = getDataPaginated(dataSorted, paginationConfig);
-
-  return (
-    <div className={containerClassName}>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: generateGridTemplateColumns(headers),
-          gridTemplateRows: isDataAvailable
-            ? generateGridTemplateRows(dataTable, headerHeight)
-            : 'none',
-        }}
-      >
-        <HeaderRow
-          headers={headers}
-          headerCellRender={headerCellRender}
-          handleSort={handleSort}
-          activeColumnIdSorted={orderByColumnId}
-          orderDirection={order}
-          headerSortComponent={headerSortComponent}
-        />
-        {isLoading === false && data.length === 0 && (
-          <div style={{ gridColumn: '1/end' }}>{noDataComponent}</div>
-        )}
-        {isDataAvailable &&
-          dataTable.map((row, index) => (
-            <Row
-              key={`row-${row.rowId}`}
-              row={row}
-              headers={headers}
-              cellRender={cellRender}
-              firstRow={index === 0}
-              lastRow={index === dataTable.length - 1}
-              fallbackRender={fallbackRender}
-            />
-          ))}
-        {isLoading && <div style={{ gridColumn: '1/end' }}>{loadingComponent}</div>}
-      </div>
-      {isDataAvailable && paginationRender && (
-        <Pagination
-          dataLength={data.length}
-          paginationRender={paginationRender}
-          paginationConfig={paginationConfig}
-        />
-      )}
-    </div>
-  );
-}
+export default BespokeTable;

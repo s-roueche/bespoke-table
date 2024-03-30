@@ -12,7 +12,7 @@
     <img src="images/bespoke-table.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Bespoke-Table</h3>
+<h3 align="center">Bespoke-BespokeTable</h3>
   <p align="center">
     A react table generator compatible with all design systems, just stay focus on your UX/UI.
     <br />
@@ -33,9 +33,9 @@
 
 [![Bespoke-table Shot][product-screenshot]](https://example.com)
 
-# Bespoke-Table
+# Bespoke-BespokeTable
 
-Bespoke-Table is a flexible and extensible React library for generate tables. Designed to seamlessly integrate with any
+Bespoke-BespokeTable is a flexible and extensible React library for generate tables. Designed to seamlessly integrate with any
 design system, it allows developers to focus on styling and user experience while efficiently managing the table's
 structure and functionality.
 
@@ -52,21 +52,21 @@ appearance and behavior without the bloat of heavier solutions.
 
 ## Installation
 
-You can install Bespoke-Table using npm or yarn:
+You can install Bespoke-BespokeTable using npm or yarn:
 
 ```bash
-npm install Bespoke-Table
+npm install Bespoke-BespokeTable
 or 
-yarn add Bespoke-Table
+yarn add Bespoke-BespokeTable
 ```
 
 ## Usage
 
-To start using Bespoke-Table, this is a simple example of how to use it :
+To start using Bespoke-BespokeTable, this is a simple example of how to use it :
 
 ```tsx
 import React from 'react';
-import {Table, TableHeaderProps} from 'bespoke-table';
+import {BespokeTable, TableHeaderProps} from 'bespoke-table';
 
 const MyTable = () => {
     const data = [{
@@ -150,7 +150,7 @@ const MyTable = () => {
     ];
 
     return (
-        <Table headers={headers}
+        <BespokeTable headers={headers}
                headerCellRender={(header) => <span>{header.title}</span>}
                data={data}
                cellRender={(header, rowProps, cell) => <span>{cell?.value}</span>}
@@ -321,12 +321,12 @@ String value in `px`, `fr`, `%`, `em`, `rem`, `vh` or `vw`
 
 ## Customization
 
-Bespoke-Table is designed to be highly customizable. You can use custom components for column headers, cells, sorting
+Bespoke-BespokeTable is designed to be highly customizable. You can use custom components for column headers, cells, sorting
 and even pagination. For more information on customization, please refer to the documentation.
 
 ## Examples
 
-For more detailed examples on how to integrate and use Bespoke-Table in your projects, please visit
+For more detailed examples on how to integrate and use Bespoke-BespokeTable in your projects, please visit
 our [storybook](https://s-roueche.github.io/bespoke-table).
 
 ## Thanks

@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
-import { HandlerSort, Order, TableHeaderProps } from '../type';
 import { getDefaultColumnSort } from '../utils/tableSortUtils';
+import { HandlerSort, Order, TableHeaderProps } from '../index';
 
 interface UseTableSortReturn<C> {
   order: Order;

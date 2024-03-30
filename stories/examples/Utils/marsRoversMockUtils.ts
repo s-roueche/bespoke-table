@@ -1,6 +1,6 @@
-import { Size, TableDataProps, TableHeaderProps } from '../../../src/type';
 import { toDate } from './dateFormatUtils';
 import { formatNumber } from './numberUtils';
+import { Size, TableDataProps, TableHeaderProps } from '../../../src';
 
 export interface MarsRoverApiResponseProps {
   id: number;

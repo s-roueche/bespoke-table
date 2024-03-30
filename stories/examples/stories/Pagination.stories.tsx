@@ -1,7 +1,6 @@
-import Table from '../../../src/index';
+import BespokeTable, { TableProps } from '../../../src/index';
 import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { TableProps } from '../../../src/type';
 import TableWithFullBorderHeader from '../Components/Header/TableWithFullBorderHeader';
 import TablePagination from '../Components/Pagination/Pagination';
 import {
@@ -14,7 +13,7 @@ import { MarsRoverHeaderDataProps } from '../Utils/marsRoversMockUtils';
 
 const meta: Meta<TableProps<MarsRoverPhotoTableDataProps, MarsRoverHeaderDataProps>> = {
   title: 'BespokeTable',
-  component: Table,
+  component: BespokeTable,
   args: {
     headers: marsRoverPhotoTableHeaders,
     headerCellRender: (header) => <TableWithFullBorderHeader header={header} />,
@@ -34,7 +33,7 @@ const meta: Meta<TableProps<MarsRoverPhotoTableDataProps, MarsRoverHeaderDataPro
     }),
   ],
   render: ({ data, ...args }, { loaded: { roverPhotoResponse } }) => (
-    <Table data={buildMarsRoverPhotoTableData(roverPhotoResponse.photos)} {...args} />
+    <BespokeTable data={buildMarsRoverPhotoTableData(roverPhotoResponse.photos)} {...args} />
   ),
 };
 

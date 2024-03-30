@@ -1,7 +1,6 @@
-import Table from '../../../src/index';
+import BespokeTable, { TableProps } from '../../../src/index';
 import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { TableProps } from '../../../src/type';
 import TableWithFullBorderHeader from '../Components/Header/TableWithFullBorderHeader';
 import Container from '../Components/Container';
 import {
@@ -12,14 +11,14 @@ import {
 
 const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> = {
   title: 'BespokeTable/Data Management',
-  component: Table,
+  component: BespokeTable,
   args: {
     headers: marsRoverTableHeader,
     data: [],
     headerCellRender: (header) => <TableWithFullBorderHeader header={header} />,
     cellRender: () => <></>,
   },
-  render: (args) => <Table {...args} />,
+  render: (args) => <BespokeTable {...args} />,
 };
 
 export default meta;

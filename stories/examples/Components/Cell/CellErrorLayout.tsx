@@ -1,6 +1,6 @@
 import React from 'react';
-import { TableHeaderProps } from '../../../../src/type';
 import { MarsRoverHeaderDataProps, MarsRoverTableDataProps } from '../../Utils/marsRoversMockUtils';
+import { TableHeaderProps } from '../../../../src';
 
 const CellErrorLayout = ({
   lastRow,

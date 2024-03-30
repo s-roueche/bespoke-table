@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PaginationTableConfigProps, UsePaginationTableProps } from '../type';
+import { PaginationTableConfigProps, UsePaginationTableProps } from '../index';
 
 export function usePaginationTable(
   pagination?: PaginationTableConfigProps,

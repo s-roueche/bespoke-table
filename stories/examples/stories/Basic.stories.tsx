@@ -1,7 +1,6 @@
-import Table from '../../../src/index';
+import BespokeTable, { TableProps } from '../../../src/index';
 import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { TableProps } from '../../../src/type';
 import {
   buildMarsRoverTableData,
   MarsRoverHeaderDataProps,
@@ -11,7 +10,7 @@ import {
 
 const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> = {
   title: 'BespokeTable',
-  component: Table,
+  component: BespokeTable,
   tags: ['autodocs'],
   args: {
     headers: marsRoverTableHeader,
@@ -19,7 +18,7 @@ const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> 
     cellRender: (header, rowProps, cell) => <span>{cell?.value}</span>,
   },
   render: ({ data, ...args }, { loaded: { roverResponse } }) => (
-    <Table data={buildMarsRoverTableData(roverResponse.rovers)} {...args} />
+    <BespokeTable data={buildMarsRoverTableData(roverResponse.rovers)} {...args} />
   ),
 };
 

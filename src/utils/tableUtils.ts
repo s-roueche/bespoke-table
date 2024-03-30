@@ -1,4 +1,4 @@
-import { Size, TableDataProps, TableHeaderProps } from '../type';
+import { Size, TableDataProps, TableHeaderProps } from '../index';
 
 export function generateGridTemplateColumns<C, H>(headers: TableHeaderProps<C, H>[]) {
   return headers.map((header) => (header.width ? header.width : '1fr')).join(' ');
