@@ -1,4 +1,4 @@
-import { PaginationRender, PaginationRenderProps, UsePaginationTableProps } from '../type';
+import { PaginationRender, PaginationRenderProps, UsePaginationTableProps } from '../index';
 
 type PaginationProps = {
   dataLength: number;

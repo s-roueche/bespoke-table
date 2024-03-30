@@ -1,6 +1,7 @@
 import { getDataPaginated } from '../../src/utils/tablePaginationUtils';
 import { generateBasicMockData } from '../mock/generateBasicMockData';
-import { UsePaginationTableProps } from '../../src/type';
+
+import { UsePaginationTableProps } from '../../src';
 
 describe('tablePaginationUtils', () => {
   const paginationConfiguration: Pick<

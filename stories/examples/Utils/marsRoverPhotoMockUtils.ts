@@ -1,6 +1,6 @@
-import { TableDataProps, TableHeaderProps } from '../../../src/type';
 import { Camera, MarsRoverApiResponseProps, MarsRoverHeaderDataProps } from './marsRoversMockUtils';
 import { formatDate, toDate } from './dateFormatUtils';
+import { TableDataProps, TableHeaderProps } from '../../../src';
 
 export type MarsRoverPhotoApiResponseProps = {
   id: number;

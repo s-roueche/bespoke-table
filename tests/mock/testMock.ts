@@ -1,10 +1,10 @@
-import { Size, TableDataProps, TableHeaderProps } from '../../src/type';
 import { toDate } from '../../stories/examples/Utils/dateFormatUtils';
 import { formatNumber } from '../../stories/examples/Utils/numberUtils';
 import {
   MarsRoverApiResponseProps,
   MarsRoverHeaderDataProps,
 } from '../../stories/examples/Utils/marsRoversMockUtils';
+import { Size, TableDataProps, TableHeaderProps } from '../../src';
 export interface MarsRoverDataTestProps {
   id: number;
   name: string;

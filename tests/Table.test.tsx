@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
-import Table from '../src/index';
+import BespokeTable from '../src/index';
 import {
   buildMarsRoverTableDataTest,
   marsRoverTableHeaderTestMock,
@@ -12,7 +12,7 @@ import {
 describe('Table component', () => {
   test('renders a basic table component', () => {
     render(
-      <Table
+      <BespokeTable
         data={buildMarsRoverTableDataTest(roversDataTestMock)}
         headers={marsRoverTableHeaderTestMock}
         headerCellRender={(header) => <span data-testid='header'>{header.title}</span>}
@@ -33,7 +33,7 @@ describe('Table component', () => {
 
   test('renders a table component with pagination', () => {
     render(
-      <Table
+      <BespokeTable
         data={buildMarsRoverTableDataTest(roversDataTestMock)}
         headers={marsRoverTableHeaderTestMock}
         headerCellRender={(header) => <span data-testid='header'>{header.title}</span>}
@@ -59,7 +59,7 @@ describe('Table component', () => {
 
   test('renders a table component with sort component', () => {
     render(
-      <Table
+      <BespokeTable
         data={buildMarsRoverTableDataTest(roversDataTestMock)}
         headers={marsRoverTableHeaderTestWithSortMock}
         headerCellRender={(header, sortComponent) => (
@@ -85,7 +85,7 @@ describe('Table component', () => {
 
   test('renders a table with loading component', () => {
     render(
-      <Table
+      <BespokeTable
         data={buildMarsRoverTableDataTest(roversDataTestMock)}
         headers={marsRoverTableHeaderTestWithSortMock}
         headerCellRender={(header, sortComponent) => (
@@ -106,7 +106,7 @@ describe('Table component', () => {
 
   test('renders a table with no data component', () => {
     render(
-      <Table
+      <BespokeTable
         data={[]}
         headers={marsRoverTableHeaderTestWithSortMock}
         headerCellRender={(header, sortComponent) => (

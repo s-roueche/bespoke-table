@@ -1,7 +1,6 @@
-import Table from '../../../src/index';
+import BespokeTable, { TableProps } from '../../../src/index';
 import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { TableProps } from '../../../src/type';
 import TableWithFullBorderHeader from '../Components/Header/TableWithFullBorderHeader';
 import ThrowError from '../Components/ThrowError';
 import TableWithFullBorderCell from '../Components/Cell/TableWithFullBorderCell';
@@ -15,7 +14,7 @@ import {
 
 const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> = {
   title: 'BespokeTable/Error Management',
-  component: Table,
+  component: BespokeTable,
   args: {
     headers: marsRoverTableHeader,
     headerCellRender: (header) => <TableWithFullBorderHeader header={header} />,
@@ -27,7 +26,7 @@ const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> 
       ),
   },
   render: ({ data, ...args }, { loaded: { roverResponse } }) => (
-    <Table data={buildMarsRoverTableData(roverResponse.rovers)} {...args} />
+    <BespokeTable data={buildMarsRoverTableData(roverResponse.rovers)} {...args} />
   ),
 };
 

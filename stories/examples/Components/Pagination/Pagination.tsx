@@ -1,5 +1,5 @@
-import { PaginationRenderProps } from '../../../../src/type';
 import React from 'react';
+import { PaginationRenderProps } from '../../../../src';
 
 const Pagination = ({
   handleChangeRowsPerPage,

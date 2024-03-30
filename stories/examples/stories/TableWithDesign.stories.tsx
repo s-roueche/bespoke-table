@@ -1,7 +1,6 @@
-import Table from '../../../src/index';
+import BespokeTable, { TableProps } from '../../../src/index';
 import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { TableProps } from '../../../src/type';
 import HeaderDesign from '../Components/Header/HeaderDesign';
 import CellDesign from '../Components/Cell/CellDesign';
 import {
@@ -13,7 +12,7 @@ import {
 
 const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> = {
   title: 'BespokeTable',
-  component: Table,
+  component: BespokeTable,
   args: {
     headers: marsRoverTableHeader,
     headerCellRender: (header) => <HeaderDesign header={header} />,
@@ -23,7 +22,7 @@ const meta: Meta<TableProps<MarsRoverTableDataProps, MarsRoverHeaderDataProps>> 
     headerHeight: '60px',
   },
   render: ({ data, ...args }, { loaded: { roverResponse } }) => (
-    <Table data={buildMarsRoverTableData(roverResponse.rovers, '50px', true)} {...args} />
+    <BespokeTable data={buildMarsRoverTableData(roverResponse.rovers, '50px', true)} {...args} />
   ),
   parameters: {
     backgrounds: {

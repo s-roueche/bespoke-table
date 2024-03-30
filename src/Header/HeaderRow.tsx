@@ -1,13 +1,13 @@
 import React from 'react';
 import { Fragment } from 'react';
+import { getNextOrderDirection } from '../utils/tableSortUtils';
 import {
   HandlerSort,
   HeaderCellRender,
   HeaderSortComponent,
   Order,
   TableHeaderProps,
-} from '../type';
-import { getNextOrderDirection } from '../utils/tableSortUtils';
+} from '../index';
 
 export default function HeaderRow<C, H>({
   headers,

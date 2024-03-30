@@ -1,5 +1,5 @@
 import { isFunction } from 'lodash';
-import { Order, TableDataProps, TableHeaderProps } from '../type';
+import { Order, TableDataProps, TableHeaderProps } from '../index';
 
 export function getNextOrderDirection(
   nextColumnIdToSort: string,
