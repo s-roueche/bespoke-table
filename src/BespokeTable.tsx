@@ -31,40 +31,42 @@ export default function BespokeTable<C, H>({
   const dataTable = getDataPaginated(dataSorted, paginationConfig);
 
   return (
-    <div className={containerClassName}>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: generateGridTemplateColumns(headers),
-          gridTemplateRows: isDataAvailable
-            ? generateGridTemplateRows(dataTable, headerHeight)
-            : 'none',
-        }}
-      >
-        <HeaderRow
-          headers={headers}
-          headerCellRender={headerCellRender}
-          handleSort={handleSort}
-          activeColumnIdSorted={orderByColumnId}
-          orderDirection={order}
-          headerSortComponent={headerSortComponent}
-        />
-        {isLoading === false && data.length === 0 && (
-          <div style={{ gridColumn: '1/end' }}>{noDataComponent}</div>
-        )}
-        {isDataAvailable &&
-          dataTable.map((row, index) => (
-            <Row
-              key={`row-${row.rowId}`}
-              row={row}
-              headers={headers}
-              cellRender={cellRender}
-              firstRow={index === 0}
-              lastRow={index === dataTable.length - 1}
-              fallbackRender={fallbackRender}
-            />
-          ))}
-        {isLoading && <div style={{ gridColumn: '1/end' }}>{loadingComponent}</div>}
+    <>
+      <div className={containerClassName}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: generateGridTemplateColumns(headers),
+            gridTemplateRows: isDataAvailable
+              ? generateGridTemplateRows(dataTable, headerHeight)
+              : 'none',
+          }}
+        >
+          <HeaderRow
+            headers={headers}
+            headerCellRender={headerCellRender}
+            handleSort={handleSort}
+            activeColumnIdSorted={orderByColumnId}
+            orderDirection={order}
+            headerSortComponent={headerSortComponent}
+          />
+          {isLoading === false && data.length === 0 && (
+            <div style={{ gridColumn: '1/end' }}>{noDataComponent}</div>
+          )}
+          {isDataAvailable &&
+            dataTable.map((row, index) => (
+              <Row
+                key={`row-${row.rowId}`}
+                row={row}
+                headers={headers}
+                cellRender={cellRender}
+                firstRow={index === 0}
+                lastRow={index === dataTable.length - 1}
+                fallbackRender={fallbackRender}
+              />
+            ))}
+          {isLoading && <div style={{ gridColumn: '1/end' }}>{loadingComponent}</div>}
+        </div>
       </div>
       {isDataAvailable && paginationRender && (
         <Pagination
@@ -73,6 +75,6 @@ export default function BespokeTable<C, H>({
           paginationConfig={paginationConfig}
         />
       )}
-    </div>
+    </>
   );
 }
