@@ -1,6 +1,6 @@
 {
   "name": "@sroueche/bespoketable",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "A lightweight and highly customizable table component for React base on css grid. Designed with flexibility in mind, this component is perfect for developers who want full control over their table's appearance and behavior without the bloat of heavier solutions.",
   "main": "dist/cjs/bundle.js",
   "module": "dist/esm/bundle.js",
@@ -16,7 +16,9 @@
     "lint": "eslint src",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "deploy-storybook": "gh-pages -d storybook-static"
+    "deploy-storybook": "gh-pages -d storybook-static",
+    "npm:login": "npm login",
+    "npm:publish": "npm publish --access public"
   },
   "repository": {
     "type": "git",
